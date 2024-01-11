@@ -23,16 +23,10 @@ public class ShiftType {
     @Column
     private Time endTime;
 
-//    @OneToMany (mappedBy = "shift_type")
-//    @JsonIgnoreProperties
-//    @Column
-//    private ShiftRotation shiftRotation;
-
     public ShiftType(ShiftSlot shiftSlot, Time startTime, Time endTime) {
         this.shiftSlot = shiftSlot;
         this.startTime = startTime;
         this.endTime = endTime;
-//        this.shiftRotation = shiftRotation;
     }
 
     public ShiftType(){

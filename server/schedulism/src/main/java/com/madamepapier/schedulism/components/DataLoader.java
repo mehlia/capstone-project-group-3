@@ -22,8 +22,7 @@ public class DataLoader implements ApplicationRunner {
                 "annie@mail.com",
                 "AnnieRF",
                 "Admin",
-                UserRole.HR_EMPLOYEE,
-                1000);
+                UserRole.HR_EMPLOYEE);
         userRepository.save(userOne);
 
 //    Employee 2
@@ -32,8 +31,7 @@ public class DataLoader implements ApplicationRunner {
             "janet@mail.com",
             "JanetRF",
             "Sales Assistant",
-            UserRole.EMPLOYEE,
-            500);
+            UserRole.EMPLOYEE);
         userRepository.save(userTwo);
     }
 

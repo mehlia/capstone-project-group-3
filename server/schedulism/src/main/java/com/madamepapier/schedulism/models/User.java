@@ -2,6 +2,9 @@ package com.madamepapier.schedulism.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -32,20 +35,19 @@ public class User {
     @Column
     private UserRole userRole;
 
-    @Column
-    private int salary;
+    @OneToMany (mappedBy = "user")
+    private List<ShiftRotation> shiftRotations;
 
-//    @OneToMany
 
 
     //Constructor
-    public User(String name, String email, String username, String occupation, UserRole userRole, int salary) {
+    public User(String name, String email, String username, String occupation, UserRole userRole) {
         this.name = name;
         this.email = email;
         this.username = username;
         this.occupation = occupation;
         this.userRole = userRole;
-        this.salary = salary;
+        this.shiftRotations = new ArrayList<>();
     }
 
     //Empty constructor
@@ -101,12 +103,11 @@ public class User {
         this.userRole = userRole;
     }
 
-    public int getSalary() {
-        return salary;
+    public List<ShiftRotation> getShiftRotations() {
+        return shiftRotations;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public void setShiftRotations(List<ShiftRotation> shiftRotations) {
+        this.shiftRotations = shiftRotations;
     }
-
 } //Last
