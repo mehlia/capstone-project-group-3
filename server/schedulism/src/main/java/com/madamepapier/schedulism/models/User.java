@@ -28,8 +28,9 @@ public class User {
     private String occupation;
 
 //    This needs to be an ENUM
-//    @Column
-//    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column
+    private UserRole userRole;
 
     @Column
     private int salary;
