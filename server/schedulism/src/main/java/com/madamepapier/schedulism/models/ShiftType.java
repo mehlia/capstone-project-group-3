@@ -1,5 +1,6 @@
 package com.madamepapier.schedulism.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Time;
@@ -22,11 +23,15 @@ public class ShiftType {
     @Column
     private Time endTime;
 
+    @OneToMany (mappedBy = "shift_type")
+    @JsonIgnoreProperties
+    private ShiftRotation shiftRotation;
 
-    public ShiftType(ShiftSlot shiftSlot, Time startTime, Time endTime) {
+    public ShiftType(ShiftSlot shiftSlot, Time startTime, Time endTime, ShiftRotation shiftRotation) {
         this.shiftSlot = shiftSlot;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.shiftRotation = shiftRotation;
     }
 
     public ShiftType(){
@@ -54,5 +59,13 @@ public class ShiftType {
 
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
+    }
+
+    public ShiftRotation getShiftRotation() {
+        return shiftRotation;
+    }
+
+    public void setShiftRotation(ShiftRotation shiftRotation) {
+        this.shiftRotation = shiftRotation;
     }
 } //Last bracket
