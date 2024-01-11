@@ -36,7 +36,7 @@ public class UserController {
         try {
             Optional<User> foundUser = userService.findUserById(requesterId, idToFind);
             return ResponseEntity.ok(foundUser);
-        } catch (ErrorResponseException e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }

@@ -22,18 +22,31 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> findUserById(long requesterId, long idToFind) {
-        User requester = userRepository.findById(requesterId).get();
-        if (requester == null){
-            throw new ErrorResponseException(HttpStatus.NOT_FOUND);
-        } else {
-            if (userRepository.findById(requesterId) == userRepository.findById(idToFind)
-                    || requester.getUserRole()== UserRole.HR_EMPLOYEE) {
-                return userRepository.findById(idToFind);
-            } else {
-                throw new ErrorResponseException(HttpStatus.UNAUTHORIZED);
-            }
-        }
-    }
+//    public Optional<User> findUserById(long requesterId, long idToFind) {
+//        User requester = userRepository.findById(requesterId).get();
+//        if (requester == null) {
+//            throw new ErrorResponseException(HttpStatus.NOT_FOUND);
+//        } else {
+//            if ((requesterId) == (idToFind)) {
+//                return userRepository.findById(idToFind);
+//            }
+//            if (requester.getUserRole() == UserRole.HR_EMPLOYEE) {
+//                return userRepository.findById(idToFind);
+//            } else {
+//                throw new ErrorResponseException(HttpStatus.UNAUTHORIZED);
+//            }
+//        }
+//    }
+    //
+    public Optional<User>findUserById(long requesterId, long idToFind){
+        User requester = userRepository.findById(requesterId).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+        User userToFind = userRepository.findById(idToFind).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
 
+        if(requester.getUserRole() !=UserRole.HR_EMPLOYEE && !requester.equals(userToFind)){
+            throw new ErrorResponseException(HttpStatus.UNAUTHORIZED);
+        }
+        return Optional.of(userToFind);
+    }
 }
