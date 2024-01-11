@@ -68,4 +68,12 @@ public class ShiftType {
     public void setShiftRotation(ShiftRotation shiftRotation) {
         this.shiftRotation = shiftRotation;
     }
+
+    public long getShift_type_id() {
+        return shift_type_id;
+    }
+
+    public void setShift_type_id(long shift_type_id) {
+        this.shift_type_id = shift_type_id;
+    }
 } //Last bracket

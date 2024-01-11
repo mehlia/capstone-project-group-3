@@ -1,5 +1,6 @@
 package com.madamepapier.schedulism.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,25 +19,22 @@ public class ShiftRotation {
     private long user_id;
 
     @Column
-    Date date;
+    private Date date;
+
+    @ManyToOne
+    @JoinTable(name = "shift_type_id")
+    @JsonIgnoreProperties ({"shift_rotation"})
+    private ShiftType shiftType;
 
 
-    public ShiftRotation(long shift_rotation_id, long shift_type_id, long user_id, Date date) {
-        this.shift_rotation_id = shift_rotation_id;
+    public ShiftRotation(long shift_type_id, long user_id, Date date, ShiftType shiftType) {
         this.shift_type_id = shift_type_id;
         this.user_id = user_id;
         this.date = date;
+        this.shiftType = shiftType;
     }
 
     public ShiftRotation() {
-    }
-
-    public long getShift_rotation_id() {
-        return shift_rotation_id;
-    }
-
-    public void setShift_rotation_id(long shift_rotation_id) {
-        this.shift_rotation_id = shift_rotation_id;
     }
 
     public long getShift_type_id() {
@@ -61,5 +59,21 @@ public class ShiftRotation {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public ShiftType getShiftType() {
+        return shiftType;
+    }
+
+    public void setShiftType(ShiftType shiftType) {
+        this.shiftType = shiftType;
+    }
+
+    public long getShift_rotation_id() {
+        return shift_rotation_id;
+    }
+
+    public void setShift_rotation_id(long shift_rotation_id) {
+        this.shift_rotation_id = shift_rotation_id;
     }
 }
