@@ -1,6 +1,11 @@
 package com.madamepapier.schedulism.repositories;
 
-public interface ShiftTypeRepository {
-//    test
+import com.madamepapier.schedulism.models.ShiftType;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ShiftTypeRepository extends JpaRepository<ShiftType, Long> {
+//
 
 }
