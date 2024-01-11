@@ -39,12 +39,12 @@ public class User {
 
 
     //Constructor
-    public User(Long id, String name, String email, String username, String occupation, int salary) {
-        this.id = id;
+    public User(String name, String email, String username, String occupation, UserRole userRole, int salary) {
         this.name = name;
         this.email = email;
         this.username = username;
         this.occupation = occupation;
+        this.userRole = userRole;
         this.salary = salary;
     }
 
@@ -91,6 +91,14 @@ public class User {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public int getSalary() {
