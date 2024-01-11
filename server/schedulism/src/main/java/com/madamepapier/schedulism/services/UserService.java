@@ -17,9 +17,6 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    User user;
-
 //    Display all employees function
     public List<User> findAllUsers(){
         return userRepository.findAll();
@@ -32,7 +29,7 @@ public class UserService {
         } else {
             if (userRepository.findById(requesterId) == userRepository.findById(idToFind)
                     || requester.getUserRole()== UserRole.HR_EMPLOYEE) {
-                return userRepository.findById(requesterId);
+                return userRepository.findById(idToFind);
             } else {
                 throw new ErrorResponseException(HttpStatus.UNAUTHORIZED);
             }
