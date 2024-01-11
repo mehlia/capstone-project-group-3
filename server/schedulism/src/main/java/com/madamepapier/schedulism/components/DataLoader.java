@@ -55,6 +55,22 @@ public class DataLoader implements ApplicationRunner {
         );
         shiftTypeRepository.save(shiftTypeOne);
 
+        //        One
+        ShiftType shiftTypeTwo = new ShiftType(
+                ShiftSlot.AFTERNOON,
+                LocalTime.of(12,00),
+                LocalTime.of(18, 00)
+        );
+        shiftTypeRepository.save(shiftTypeTwo);
+
+        //        One
+        ShiftType shiftTypeThree = new ShiftType(
+                ShiftSlot.EVENING,
+                LocalTime.of(16,00),
+                LocalTime.of(22, 00)
+        );
+        shiftTypeRepository.save(shiftTypeThree);
+
 
     }
 
