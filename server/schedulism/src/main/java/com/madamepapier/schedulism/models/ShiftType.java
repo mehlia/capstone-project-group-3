@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Time;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "shift_type")
@@ -12,8 +11,9 @@ public class ShiftType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long shift_type_id;
+    private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column
     private ShiftSlot shiftSlot;
 
@@ -23,18 +23,27 @@ public class ShiftType {
     @Column
     private Time endTime;
 
-    @OneToMany (mappedBy = "shift_type")
-    @JsonIgnoreProperties
-    private ShiftRotation shiftRotation;
+//    @OneToMany (mappedBy = "shift_type")
+//    @JsonIgnoreProperties
+//    @Column
+//    private ShiftRotation shiftRotation;
 
-    public ShiftType(ShiftSlot shiftSlot, Time startTime, Time endTime, ShiftRotation shiftRotation) {
+    public ShiftType(ShiftSlot shiftSlot, Time startTime, Time endTime) {
         this.shiftSlot = shiftSlot;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.shiftRotation = shiftRotation;
+//        this.shiftRotation = shiftRotation;
     }
 
     public ShiftType(){
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public ShiftSlot getShiftSlot() {
@@ -61,19 +70,6 @@ public class ShiftType {
         this.endTime = endTime;
     }
 
-    public ShiftRotation getShiftRotation() {
-        return shiftRotation;
-    }
 
-    public void setShiftRotation(ShiftRotation shiftRotation) {
-        this.shiftRotation = shiftRotation;
-    }
 
-    public long getShift_type_id() {
-        return shift_type_id;
-    }
-
-    public void setShift_type_id(long shift_type_id) {
-        this.shift_type_id = shift_type_id;
-    }
 } //Last bracket
