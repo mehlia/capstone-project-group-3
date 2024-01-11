@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "shift_type")
+@Table(name = "shift_types")
 public class ShiftType {
 
     @Id
@@ -23,13 +25,25 @@ public class ShiftType {
     @Column
     private Time endTime;
 
+    @OneToMany (mappedBy = "shiftType")
+    private List<ShiftRotation> shiftRotations;
+
     public ShiftType(ShiftSlot shiftSlot, Time startTime, Time endTime) {
         this.shiftSlot = shiftSlot;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.shiftRotations = new ArrayList<>();
     }
 
     public ShiftType(){
+    }
+
+    public List<ShiftRotation> getShiftRotations() {
+        return shiftRotations;
+    }
+
+    public void setShiftRotations(List<ShiftRotation> shiftRotations) {
+        this.shiftRotations = shiftRotations;
     }
 
     public Long getId() {

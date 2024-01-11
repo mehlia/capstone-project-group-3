@@ -20,15 +20,25 @@ public class ShiftRotation {
     @JsonIgnoreProperties ({"shiftRotation"})
     private User user;
 
-//    @Column
-//    private ShiftType shiftType;
+    @ManyToOne
+    @JoinColumn (name = "shiftType_id")
+    @JsonIgnoreProperties ({"shiftRotation"})
+    private ShiftType shiftType;
 
-
-    public ShiftRotation(Date date, User user) {
+    public ShiftRotation(Date date, User user, ShiftType shiftType) {
         this.date = date;
         this.user = user;
+        this.shiftType = shiftType;
     }
     public ShiftRotation() {
+    }
+
+    public ShiftType getShiftType() {
+        return shiftType;
+    }
+
+    public void setShiftType(ShiftType shiftType) {
+        this.shiftType = shiftType;
     }
 
     public User getUser() {
