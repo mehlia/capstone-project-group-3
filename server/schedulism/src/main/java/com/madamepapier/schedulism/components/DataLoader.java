@@ -11,17 +11,22 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalTime;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
     UserRepository userRepository;
 
-//    @Autowired
-//    ShiftTypeRepository shiftTypeRepository;
+    @Autowired
+    ShiftTypeRepository shiftTypeRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
+        //users
 //        Employee 1
         User userOne = new User(
                 "Annie",
@@ -40,8 +45,15 @@ public class DataLoader implements ApplicationRunner {
             UserRole.EMPLOYEE);
         userRepository.save(userTwo);
 
+
         //     Shift types
-//        ShiftType shiftTypeOne = new ShiftType(ShiftSlot.MORNING);
+//        One
+        ShiftType shiftTypeOne = new ShiftType(
+                ShiftSlot.MORNING,
+                LocalTime.of(8,00),
+                LocalTime.of(14, 00)
+        );
+        shiftTypeRepository.save(shiftTypeOne);
 
 
     }

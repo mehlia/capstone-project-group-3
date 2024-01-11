@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +21,15 @@ public class ShiftType {
     private ShiftSlot shiftSlot;
 
     @Column
-    private Time startTime; // change to DateTime perhaps
+    private LocalTime startTime; // change to DateTime perhaps
 
     @Column
-    private Time endTime;
+    private LocalTime endTime;
 
     @OneToMany (mappedBy = "shiftType")
     private List<ShiftRotation> shiftRotations;
 
-    public ShiftType(ShiftSlot shiftSlot, Time startTime, Time endTime) {
+    public ShiftType(ShiftSlot shiftSlot, LocalTime startTime, LocalTime endTime) {
         this.shiftSlot = shiftSlot;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -62,22 +63,19 @@ public class ShiftType {
         this.shiftSlot = shiftSlot;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
-
-
-
 } //Last bracket
