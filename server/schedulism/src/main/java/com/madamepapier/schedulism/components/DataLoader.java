@@ -16,7 +16,7 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
-//
+//        Employee 1
         User userOne = new User(
                 "Annie",
                 "annie@mail.com",
@@ -25,6 +25,16 @@ public class DataLoader implements ApplicationRunner {
                 UserRole.HR_EMPLOYEE,
                 1000);
         userRepository.save(userOne);
+
+//    Employee 2
+    User userTwo = new User(
+            "Janet",
+            "janet@mail.com",
+            "JanetRF",
+            "Sales Assistant",
+            UserRole.EMPLOYEE,
+            500);
+        userRepository.save(userTwo);
     }
 
 } //Last
