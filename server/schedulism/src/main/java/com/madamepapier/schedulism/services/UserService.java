@@ -55,4 +55,16 @@ public class UserService {
         }
         return userShifts;
     }
+
+    // Create new user
+
+    public User createNewUser(User newUser, long requesterId){
+        User requester = userRepository.findById(requesterId).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE)){
+            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+        }
+        return userRepository.save(newUser);
+    }
 }
