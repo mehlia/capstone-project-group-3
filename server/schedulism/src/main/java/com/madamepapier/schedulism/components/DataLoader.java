@@ -1,9 +1,7 @@
 package com.madamepapier.schedulism.components;
 
-import com.madamepapier.schedulism.models.ShiftSlot;
-import com.madamepapier.schedulism.models.ShiftType;
-import com.madamepapier.schedulism.models.User;
-import com.madamepapier.schedulism.models.UserRole;
+import com.madamepapier.schedulism.models.*;
+import com.madamepapier.schedulism.repositories.ShiftRotationRepository;
 import com.madamepapier.schedulism.repositories.ShiftTypeRepository;
 import com.madamepapier.schedulism.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Component
@@ -23,6 +22,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     ShiftTypeRepository shiftTypeRepository;
+
+    @Autowired
+    ShiftRotationRepository shiftRotationRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
@@ -114,6 +116,34 @@ public class DataLoader implements ApplicationRunner {
         shiftTypeRepository.save(shiftTypeThree);
         shiftTypeRepository.save(shiftTypeFour);
         shiftTypeRepository.save(shiftTypeFive);
+
+
+//        Shift Rotations
+        ShiftRotation shiftRotationOne = new ShiftRotation(
+                LocalDate.of(2023,01, 01),
+                userOne,
+                shiftTypeOne);
+
+        ShiftRotation shiftRotationTwo = new ShiftRotation(
+                LocalDate.of(2023,01, 01),
+                userFour,
+                shiftTypeOne);
+
+        ShiftRotation shiftRotationThree = new ShiftRotation(
+                LocalDate.of(2023,01, 02),
+                userOne,
+                shiftTypeThree);
+
+        ShiftRotation shiftRotationFour = new ShiftRotation(
+                LocalDate.of(2023,01, 03),
+                userOne,
+                shiftTypeFour);
+
+
+        shiftRotationRepository.save(shiftRotationOne);
+        shiftRotationRepository.save(shiftRotationTwo);
+        shiftRotationRepository.save(shiftRotationThree);
+        shiftRotationRepository.save(shiftRotationFour);
 
 
     }
