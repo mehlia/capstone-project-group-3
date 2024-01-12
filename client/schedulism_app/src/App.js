@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import PapierContainer from './containers/PapierContainer';
 
 function App() {
   return (
-    <></>
+    <><PapierContainer/> </>
   );
 }
 
