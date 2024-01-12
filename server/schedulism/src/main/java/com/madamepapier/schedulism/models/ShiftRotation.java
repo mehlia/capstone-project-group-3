@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "shift_rotation")
@@ -16,6 +16,7 @@ public class ShiftRotation {
 
     @Column
     private LocalDate date;
+
     @ManyToOne
     @JoinColumn (name = "user_id")
     @JsonIgnoreProperties ({"shiftRotation"})
@@ -25,6 +26,7 @@ public class ShiftRotation {
     @JoinColumn (name = "shiftType_id")
     @JsonIgnoreProperties ({"shiftRotation"})
     private ShiftType shiftType;
+
 
     public ShiftRotation(LocalDate date, User user, ShiftType shiftType) {
         this.date = date;
