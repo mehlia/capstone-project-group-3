@@ -4,7 +4,9 @@ import PapierContainer from './containers/PapierContainer';
 
 function App() {
   return (
-    <><PapierContainer/> </>
+    <>
+      <PapierContainer/> 
+    </>
   );
 }
 
