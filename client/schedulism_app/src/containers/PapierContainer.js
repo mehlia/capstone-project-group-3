@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import UserList from "../component/UserList";
+import NewUserForm from "../component/NewUserForm";
+import LogInForm from "../component/LogInForm";
 
 const PapierContainer = () => {
     
@@ -19,7 +21,7 @@ const PapierContainer = () => {
         setUserToFind(jsonData);
     }
 
-    const fetchAllShifts = async (shiftRotationId, requesterId) => {
+    const fetchAllUserShifts = async (shiftRotationId, requesterId) => {
         const response = await fetch(`http://localhost:8080/shift-rotations/${shiftRotationId}/users/${requesterId}`);
         const jsonData = await response.json();
         setShifts(jsonData);
@@ -27,15 +29,14 @@ const PapierContainer = () => {
 
     useEffect(() => {
         fetchAllUsers(1);
-        fetchAllShifts(1,1);
+        fetchAllUserShifts(1,1);
         fetchUserById(1,3);
     },[])
 
     return ( 
     <>
         <h1>This is the container</h1>
-        <UserList />
-
+        <LogInForm/>
     </> 
     );
 }
