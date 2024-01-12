@@ -25,12 +25,12 @@ public class ShiftRotationService {
     UserService userService;
 
 //   Find shift rotation by ID
-    public ShiftRotation findShiftById(long shiftRotationId, long requesterId){
+    public ShiftRotation findShiftRotationById(long shiftRotationId, long requesterId){
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
         ShiftRotation shiftRotationToFind  = shiftRotationRepository.findById(shiftRotationId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
-        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE) || (requesterId == shiftRotationToFind.getUser().getId())){
+        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE) && (requesterId != shiftRotationToFind.getUser().getId())){
             throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
         return shiftRotationToFind;

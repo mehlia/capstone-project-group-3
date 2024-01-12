@@ -24,7 +24,7 @@ public class ShiftRotationController {
             @PathVariable long shiftRotationId,
             @PathVariable long requesterId){
         try {
-            ShiftRotation foundShift = shiftRotationService.findShiftById(shiftRotationId, requesterId);
+            ShiftRotation foundShift = shiftRotationService.findShiftRotationById(shiftRotationId, requesterId);
             return new ResponseEntity<>(foundShift, HttpStatus.OK);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
