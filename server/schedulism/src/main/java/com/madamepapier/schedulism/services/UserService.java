@@ -45,7 +45,7 @@ public class UserService {
         return userToFind;
     }
 
-    //Find User's shift
+    //Find all User's shifts by user ID
     public List<ShiftRotation> findAllShiftsByUserId(long id) {
         List<ShiftRotation> userShifts = new ArrayList<>();
         for (ShiftRotation shiftTemp : shiftRotationRepository.findAll()) {
