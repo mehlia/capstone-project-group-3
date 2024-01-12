@@ -31,19 +31,19 @@ public class UserController {
 
     // Get user by id
     @GetMapping("/{requesterId}/find/{idToFind}")
-    public ResponseEntity<Optional<User>> findUserById(
+    public ResponseEntity<User> findUserById(
             @PathVariable long requesterId,
             @PathVariable long idToFind
     ) {
         try {
-            Optional<User> foundUser = userService.findUserById(requesterId, idToFind);
+            User foundUser = userService.findUserById(requesterId, idToFind);
             return ResponseEntity.ok(foundUser);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
 
-    @GetMapping("/{user_id}/shift-rotations")
+    @GetMapping("/{userId}/shift-rotations")
     public ResponseEntity<List<ShiftRotation>> findAllShiftsByUserId(@PathVariable long userId){
         try{
             List<ShiftRotation> userShifts = userService.findAllShiftsByUserId(userId);

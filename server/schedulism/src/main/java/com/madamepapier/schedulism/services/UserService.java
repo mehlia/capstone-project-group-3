@@ -43,16 +43,16 @@ public class UserService {
 //        }
 //    }
     //
-    public Optional<User>findUserById(long requesterId, long idToFind){
+    public User findUserById(long requesterId, long idToFind){
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
         User userToFind = userRepository.findById(idToFind).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        if(requester.getUserRole() !=UserRole.HR_EMPLOYEE && !requester.equals(userToFind)){
+        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE || requesterId == idToFind)){
             throw new ErrorResponseException(HttpStatus.UNAUTHORIZED);
         }
-        return Optional.of(userToFind);
+        return userToFind;
     }
 
 //    public List<ShiftRotation> findAllShiftsByUserId(long id){

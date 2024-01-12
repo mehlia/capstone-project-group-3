@@ -19,12 +19,12 @@ public class ShiftRotation {
 
     @ManyToOne
     @JoinColumn (name = "user_id")
-    @JsonIgnoreProperties ({"shiftRotation"})
+    @JsonIgnoreProperties ({"shiftRotations"})
     private User user;
 
     @ManyToOne
     @JoinColumn (name = "shiftType_id")
-    @JsonIgnoreProperties ({"shiftRotation"})
+    @JsonIgnoreProperties ({"shiftRotations"})
     private ShiftType shiftType;
 
 

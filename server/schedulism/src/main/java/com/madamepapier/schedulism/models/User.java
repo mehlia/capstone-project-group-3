@@ -1,5 +1,6 @@
 package com.madamepapier.schedulism.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class User {
     private UserRole userRole;
 
     @OneToMany (mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
     private List<ShiftRotation> shiftRotations;
 
 
