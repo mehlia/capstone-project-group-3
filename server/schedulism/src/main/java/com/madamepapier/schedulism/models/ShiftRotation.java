@@ -3,7 +3,8 @@ package com.madamepapier.schedulism.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "shift_rotation")
@@ -14,7 +15,8 @@ public class ShiftRotation {
     private Long id;
 
     @Column
-    private Date date;
+    private LocalDate date;
+
     @ManyToOne
     @JoinColumn (name = "user_id")
     @JsonIgnoreProperties ({"shiftRotation"})
@@ -25,7 +27,8 @@ public class ShiftRotation {
     @JsonIgnoreProperties ({"shiftRotation"})
     private ShiftType shiftType;
 
-    public ShiftRotation(Date date, User user, ShiftType shiftType) {
+
+    public ShiftRotation(LocalDate date, User user, ShiftType shiftType) {
         this.date = date;
         this.user = user;
         this.shiftType = shiftType;
@@ -57,11 +60,12 @@ public class ShiftRotation {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }
+
