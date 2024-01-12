@@ -71,17 +71,19 @@ public class UserService {
 
     // Delete a user
 
-    public User deleteUser(long userId, long requesterId){
+    public User deleteUser(long userId, long requesterId) {
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE)){
+        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE)) {
             throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
         User userToDelete = userRepository.findById(userId).orElseThrow(() ->
-            new ErrorResponseException(HttpStatus.NOT_FOUND));
-
-        userRepository.delete(userToDelete);
-        throw new IllegalArgumentException("Account successfully deleted!"); // TBC, otherwise return to regular exception
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+        {
+         userRepository.deleteById(userId);
+        }
+        return null;
+//        throw new IllegalArgumentException("Account successfully deleted!"); // TBC, otherwise return to regular exception
     }
 }

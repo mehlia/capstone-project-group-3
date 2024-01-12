@@ -70,8 +70,7 @@ public class UserController {
             @PathVariable long userId
     ){
         try {
-            userService.deleteUser(userId, requesterId);
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(userService.deleteUser(userId, requesterId), HttpStatus.NO_CONTENT);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
