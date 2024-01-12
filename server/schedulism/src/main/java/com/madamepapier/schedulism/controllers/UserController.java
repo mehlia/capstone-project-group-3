@@ -37,9 +37,9 @@ public class UserController {
     ) {
         try {
             User foundUser = userService.findUserById(requesterId, idToFind);
-            return ResponseEntity.ok(foundUser);
+            return new ResponseEntity<>(foundUser, HttpStatus.OK);
         } catch (ErrorResponseException e) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
@@ -49,7 +49,7 @@ public class UserController {
             List<ShiftRotation> userShifts = userService.findAllShiftsByUserId(userId);
             return new ResponseEntity<>(userShifts, HttpStatus.OK);
         }catch (ErrorResponseException e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
