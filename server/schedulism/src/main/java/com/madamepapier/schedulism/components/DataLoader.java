@@ -34,8 +34,6 @@ public class DataLoader implements ApplicationRunner {
                 "AnnieRF",
                 "Admin",
                 UserRole.HR_EMPLOYEE);
-        userRepository.save(userOne);
-
 //    Employee 2
     User userTwo = new User(
             "Janet",
@@ -43,8 +41,36 @@ public class DataLoader implements ApplicationRunner {
             "JanetRF",
             "Sales Assistant",
             UserRole.EMPLOYEE);
-        userRepository.save(userTwo);
 
+//    Employee 3
+        User userThree = new User(
+                "Anita",
+                "anita@mail.com",
+                "AnitaRF",
+                "Delivery Driver",
+                UserRole.EMPLOYEE);
+
+//      Employee 4
+        User userFour = new User(
+                "Maxx",
+                "Maxx@mail.com",
+                "MaxxRF",
+                "Manager",
+                UserRole.HR_EMPLOYEE);
+
+//      Employee 4
+        User userFive = new User(
+                "Wynn",
+                "Wynn@mail.com",
+                "WynnRF",
+                "Stock Operator",
+                UserRole.EMPLOYEE);
+
+        userRepository.save(userOne);
+        userRepository.save(userTwo);
+        userRepository.save(userThree);
+        userRepository.save(userFour);
+        userRepository.save(userFive);
 
         //     Shift types
 //        One
@@ -53,23 +79,41 @@ public class DataLoader implements ApplicationRunner {
                 LocalTime.of(8,00),
                 LocalTime.of(14, 00)
         );
-        shiftTypeRepository.save(shiftTypeOne);
 
-        //        One
+        //        Two
         ShiftType shiftTypeTwo = new ShiftType(
                 ShiftSlot.AFTERNOON,
                 LocalTime.of(12,00),
                 LocalTime.of(18, 00)
         );
-        shiftTypeRepository.save(shiftTypeTwo);
 
-        //        One
+        //        Three
         ShiftType shiftTypeThree = new ShiftType(
                 ShiftSlot.EVENING,
                 LocalTime.of(16,00),
                 LocalTime.of(22, 00)
         );
+
+        //        Four
+        ShiftType shiftTypeFour = new ShiftType(
+                ShiftSlot.ANNUAL_LEAVE,
+                LocalTime.of(00,00),
+                LocalTime.of(00, 00)
+        );
+
+        //        Five
+        ShiftType shiftTypeFive = new ShiftType(
+                ShiftSlot.SICK_LEAVE,
+                LocalTime.of(00,00),
+                LocalTime.of(00, 00)
+        );
+
+
+        shiftTypeRepository.save(shiftTypeOne);
+        shiftTypeRepository.save(shiftTypeTwo);
         shiftTypeRepository.save(shiftTypeThree);
+        shiftTypeRepository.save(shiftTypeFour);
+        shiftTypeRepository.save(shiftTypeFive);
 
 
     }
