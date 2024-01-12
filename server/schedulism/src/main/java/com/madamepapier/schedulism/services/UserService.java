@@ -27,22 +27,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-//    public Optional<User> findUserById(long requesterId, long idToFind) {
-//        User requester = userRepository.findById(requesterId).get();
-//        if (requester == null) {
-//            throw new ErrorResponseException(HttpStatus.NOT_FOUND);
-//        } else {
-//            if ((requesterId) == (idToFind)) {
-//                return userRepository.findById(idToFind);
-//            }
-//            if (requester.getUserRole() == UserRole.HR_EMPLOYEE) {
-//                return userRepository.findById(idToFind);
-//            } else {
-//                throw new ErrorResponseException(HttpStatus.UNAUTHORIZED);
-//            }
-//        }
-//    }
-    //
+    //Find User by ID
     public User findUserById(long requesterId, long idToFind){
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
@@ -50,21 +35,12 @@ public class UserService {
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
 
         if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE || requesterId == idToFind)){
-            throw new ErrorResponseException(HttpStatus.UNAUTHORIZED);
+            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
         return userToFind;
     }
 
-//    public List<ShiftRotation> findAllShiftsByUserId(long id){
-//        List<ShiftRotation> userShifts = new ArrayList<>();
-//        for (long x = 0; x<shiftRotationRepository.findAll().size();) {
-//            ShiftRotation shiftTemp = shiftRotationRepository.findById(x).get();
-//            if (shiftTemp.getUser() == userRepository.findById(id).get()) {
-//                userShifts.add(shiftTemp);
-//            }
-//        }
-//        return userShifts;
-//    }
+    //Find User's shift
     public List<ShiftRotation> findAllShiftsByUserId(long id) {
         List<ShiftRotation> userShifts = new ArrayList<>();
         for (ShiftRotation shiftTemp : shiftRotationRepository.findAll()) {
