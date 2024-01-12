@@ -24,9 +24,9 @@ public class UserController {
     UserService userService;
 
 //    GET all users
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
+    @GetMapping("/{requesterId}")
+    public ResponseEntity<List<User>> getAllUsers(@PathVariable long requesterId) {
+        return new ResponseEntity<>(userService.findAllUsers(requesterId), HttpStatus.OK);
     }
 
     // Get user by id
@@ -43,6 +43,7 @@ public class UserController {
         }
     }
 
+    //Get all shift by user's id
     @GetMapping("/{userId}/shift-rotations")
     public ResponseEntity<List<ShiftRotation>> findAllShiftsByUserId(@PathVariable long userId){
         try{
@@ -52,6 +53,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
 
 
 }
