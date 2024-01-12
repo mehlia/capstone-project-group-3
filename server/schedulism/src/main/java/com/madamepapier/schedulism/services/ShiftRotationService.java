@@ -14,7 +14,6 @@ import java.util.Optional;
 
 @Service
 public class ShiftRotationService {
-
     @Autowired
     UserRepository userRepository;
 
