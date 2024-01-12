@@ -1,5 +1,6 @@
 package com.madamepapier.schedulism.controllers;
 
+import com.madamepapier.schedulism.models.ShiftRotation;
 import com.madamepapier.schedulism.models.User;
 import com.madamepapier.schedulism.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +43,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("/{user_id}/shift-rotations")
+    public ResponseEntity<List<ShiftRotation>> findAllShiftsByUserId(@PathVariable long userId){
+        try{
+            List<ShiftRotation> userShifts = userService.findAllShiftsByUserId(userId);
+            return new ResponseEntity<>(userShifts, HttpStatus.OK);
+        }catch (ErrorResponseException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
 }
