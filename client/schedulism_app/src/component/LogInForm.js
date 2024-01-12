@@ -45,7 +45,7 @@ const LogInForm = () => {
         <div class="form-container" >
             <form class="username-form" onSubmit={(event) => handleFormSubmit(event)}>
                 <input type="username"/>
-                <input type="password"/>
+                <input type="passwordç"/>
                 <input class="abcd"type="submit" value={"Log-in"}/>
             </form>
         </div>
