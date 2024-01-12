@@ -55,10 +55,19 @@ public class UserService {
         return Optional.of(userToFind);
     }
 
-    public List<ShiftRotation> findAllShiftsByUserId(long id){
+//    public List<ShiftRotation> findAllShiftsByUserId(long id){
+//        List<ShiftRotation> userShifts = new ArrayList<>();
+//        for (long x = 0; x<shiftRotationRepository.findAll().size();) {
+//            ShiftRotation shiftTemp = shiftRotationRepository.findById(x).get();
+//            if (shiftTemp.getUser() == userRepository.findById(id).get()) {
+//                userShifts.add(shiftTemp);
+//            }
+//        }
+//        return userShifts;
+//    }
+    public List<ShiftRotation> findAllShiftsByUserId(long id) {
         List<ShiftRotation> userShifts = new ArrayList<>();
-        for (long x = 0; x<shiftRotationRepository.findAll().size();) {
-            ShiftRotation shiftTemp = shiftRotationRepository.findById(x).get();
+        for (ShiftRotation shiftTemp : shiftRotationRepository.findAll()) {
             if (shiftTemp.getUser() == userRepository.findById(id).get()) {
                 userShifts.add(shiftTemp);
             }
