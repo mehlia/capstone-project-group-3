@@ -63,4 +63,18 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
+    @DeleteMapping("/{requesterId}/{userId}")
+    public ResponseEntity<User> deleteUserById(
+            @PathVariable long requesterId,
+            @PathVariable long userId
+    ){
+        try {
+            userService.deleteUser(userId, requesterId);
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        } catch (ErrorResponseException e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
 }

@@ -7,6 +7,7 @@ import com.madamepapier.schedulism.repositories.ShiftRotationRepository;
 import com.madamepapier.schedulism.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
 
@@ -66,5 +67,21 @@ public class UserService {
             throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
         return userRepository.save(newUser);
+    }
+
+    // Delete a user
+
+    public User deleteUser(long userId, long requesterId){
+        User requester = userRepository.findById(requesterId).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE)){
+            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+        }
+        User userToDelete = userRepository.findById(userId).orElseThrow(() ->
+            new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        userRepository.delete(userToDelete);
+        throw new IllegalArgumentException("Account successfully deleted!"); // TBC, otherwise return to regular exception
     }
 }
