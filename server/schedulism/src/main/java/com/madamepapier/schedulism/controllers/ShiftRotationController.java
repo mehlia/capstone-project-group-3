@@ -16,6 +16,7 @@ public class ShiftRotationController {
     @Autowired
     ShiftRotationService shiftRotationService;
 
+//    Find shift by ID
     @GetMapping("/{shiftRotationId}/users/{requesterId}")
     public ResponseEntity<ShiftRotation> findShiftById(
             @PathVariable long shiftRotationId,
@@ -28,7 +29,7 @@ public class ShiftRotationController {
         }
     }
 
-    // to create a new shift rotation
+//     Create a new shift rotation
     @PostMapping("/{requesterId}/{shiftTypeId}")
     public ResponseEntity <ShiftRotation> createNewShiftRotation(
             @PathVariable long requesterId,
@@ -38,6 +39,20 @@ public class ShiftRotationController {
             ShiftRotation shift = shiftRotationService.createNewShiftRotation(shiftTypeId, requesterId, newShiftRotation);
             return new ResponseEntity<>(shift, HttpStatus.CREATED);
             } catch (ErrorResponseException e){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+//    Add user to existing shift
+    @PostMapping("/{shiftRotationId}/add/{userId}")
+    public ResponseEntity<ShiftRotation> addUserToShiftRotation(
+            @PathVariable long shiftRotationId,
+            @PathVariable long userId,
+            @RequestBody long requesterId){
+        try {
+            ShiftRotation updatedShiftRotation = shiftRotationService.addUserToShiftRotation(shiftRotationId, requesterId, userId);
+            return new ResponseEntity<>(updatedShiftRotation, HttpStatus.OK);
+        } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }

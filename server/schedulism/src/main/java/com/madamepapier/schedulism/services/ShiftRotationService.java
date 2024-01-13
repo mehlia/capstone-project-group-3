@@ -39,7 +39,7 @@ public class ShiftRotationService {
         return shiftRotationToFind;
     }
 
-
+//    Create new shift rotation
     public ShiftRotation createNewShiftRotation(long shiftTypeId, long requesterId, ShiftRotation newShiftRotation) {
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
@@ -53,15 +53,15 @@ public class ShiftRotationService {
         return shiftRotationRepository.save(newShiftRotation);
     }
 
+//    Add user to existing shift
+    public ShiftRotation addUserToShiftRotation(long shiftRotationId, long requesterId, long userId){
+        ShiftRotation shiftRotation = findShiftRotationById(shiftRotationId, requesterId);
+        User userToAdd = userService.findUserById(requesterId, userId);
 
-
-
-//        User requester = userRepository.findById(requesterId).orElseThrow(() ->
-//                new ErrorResponseException(HttpStatus.NOT_FOUND));
-//
-//        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE)){
-//            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
-//        }
-//        return userRepository.save(newUser);
-//    }
+        if (shiftRotation.getUser() != null){
+            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+        }
+        shiftRotation.setUser(userToAdd);
+        return shiftRotationRepository.save(shiftRotation);
+    }
 }
