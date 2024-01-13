@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,14 +56,26 @@ public class ShiftRotationService {
     }
 
 //    Add user to existing shift
-    public ShiftRotation addUserToShiftRotation(long shiftRotationId, long requesterId, long userId){
-        ShiftRotation shiftRotation = findShiftRotationById(shiftRotationId, requesterId);
-        User userToAdd = userService.findUserById(requesterId, userId);
+    public ShiftRotation addUserToShiftRotation(long shiftTypeId, long requesterId, long userId) throws Exception{
+        ShiftRotation existingShiftRotation = shiftRotationRepository.findByShiftTypeIdAndUserId(shiftTypeId, userId);
 
-        if (shiftRotation.getUser() != null){
-            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+        if (existingShiftRotation.getUser() != null){
+            throw new Exception("User already booked onto this shift.");
         }
-        shiftRotation.setUser(userToAdd);
-        return shiftRotationRepository.save(shiftRotation);
+        User userToAdd = userService.findUserById(requesterId, userId);
+        ShiftType shiftTypeToAdd = shiftTypeService.findShiftTypeById(shiftTypeId);
+
+//        shiftRotationRepository.save(newShiftRotation);
+//        ShiftRotation updatedShiftRotation = new ShiftRotation(
+//                newShiftRotation.getDate(),
+//                newShiftRotation.getUser(),
+//                newShiftRotation.getShiftType()
+//        );
+        existingShiftRotation.setUser(userToAdd);
+        existingShiftRotation.setShiftType(shiftTypeToAdd);
+
+        ShiftRotation updatedShiftRotation = shiftRotationRepository.save(existingShiftRotation);
+
+        return updatedShiftRotation;
     }
 }

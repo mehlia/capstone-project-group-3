@@ -46,11 +46,11 @@ public class ShiftRotationController {
 //    Add user to existing shift
     @PostMapping("/{shiftRotationId}/add/{userId}")
     public ResponseEntity<ShiftRotation> addUserToShiftRotation(
-            @PathVariable long shiftRotationId,
             @PathVariable long userId,
-            @RequestBody long requesterId){
+            @PathVariable long requesterId,
+            @RequestBody ShiftRotation shiftRotation){
         try {
-            ShiftRotation updatedShiftRotation = shiftRotationService.addUserToShiftRotation(shiftRotationId, requesterId, userId);
+            ShiftRotation updatedShiftRotation = shiftRotationService.addUserToShiftRotation(shi);
             return new ResponseEntity<>(updatedShiftRotation, HttpStatus.OK);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
