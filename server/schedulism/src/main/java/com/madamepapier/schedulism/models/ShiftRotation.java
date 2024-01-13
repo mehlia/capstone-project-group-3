@@ -67,5 +67,7 @@ public class ShiftRotation {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+//    public createNewShiftRotation(ShiftRotation shiftRotation){ return S}
 }
 

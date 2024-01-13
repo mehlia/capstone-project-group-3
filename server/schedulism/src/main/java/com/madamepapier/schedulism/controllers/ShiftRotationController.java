@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponseException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("shift-rotations")
@@ -30,4 +27,19 @@ public class ShiftRotationController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
+    // to create a new shift rotation
+    @PostMapping("/{requesterId}/{shiftTypeId}")
+    public ResponseEntity <ShiftRotation> createNewShiftRotation(
+            @PathVariable long requesterId,
+            @PathVariable long shiftTypeId,
+            @RequestBody ShiftRotation newShiftRotation){
+        try{
+            ShiftRotation shift = shiftRotationService.createNewShiftRotation(shiftTypeId, requesterId, newShiftRotation);
+            return new ResponseEntity<>(shift, HttpStatus.CREATED);
+            } catch (ErrorResponseException e){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
 }
