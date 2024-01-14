@@ -62,13 +62,20 @@ public class ShiftRotationService {
     }
 
 //    Add user to existing shift
-    public ShiftRotation addUserToShiftRotation(long shiftTypeId, long requesterId, long userId) throws Exception { // might need to be shiftRotationId
+    public ShiftRotation addUserToShiftRotation(long shiftTypeId, long hrEmployeeId, long userId) throws Exception { // might need to be shiftRotationId
         ShiftRotation existingShiftRotation = shiftRotationRepository.findByShiftTypeIdAndUserId(shiftTypeId, userId);
 
         if (existingShiftRotation != null && existingShiftRotation.getRequestedBy() != null) {
             throw new CustomException("User is already on this shift.");
         }
-        User userToAdd = userService.findUserById(requesterId, userId);
+        User hrEmployee = userRepository.findById(hrEmployeeId)
+                .orElseThrow(() -> new CustomException("HR Employee not found"));
+        if (hrEmployee.getUserRole() != UserRole.HR_EMPLOYEE) {
+            throw new CustomException("Only HR employees can add users to shifts.");
+        }
+        User userToAdd = userRepository.findById(userId)
+                .orElseThrow(() -> new CustomException("User not found"));;
+
         ShiftType shiftTypeToAdd = existingShiftRotation.getShiftType();
 
         existingShiftRotation.setUser(userToAdd);
