@@ -27,11 +27,25 @@ public class ShiftRotation {
     @JsonIgnoreProperties ({"shiftRotations"})
     private ShiftType shiftType;
 
+    @Column
+    private boolean isHREmployee;
 
-    public ShiftRotation(LocalDate date, User user, ShiftType shiftType) {
+    @ManyToOne
+    @JoinColumn (name = "requested_by_id")
+    @JsonIgnoreProperties ({"requestedShifts"})
+    private User requestedBy;
+
+    @ManyToOne
+    @JoinColumn (name = "approved_by_id")
+    @JsonIgnoreProperties ({"approvedShifts"})
+    private User approvedBy;
+
+
+    public ShiftRotation(LocalDate date, User user, ShiftType shiftType, boolean isHREmployee) {
         this.date = date;
         this.user = user;
         this.shiftType = shiftType;
+        this.isHREmployee = isHREmployee;
     }
     public ShiftRotation() {
     }
@@ -68,6 +82,43 @@ public class ShiftRotation {
         this.date = date;
     }
 
-//    public createNewShiftRotation(ShiftRotation shiftRotation){ return S}
+    public boolean isHREmployee() {
+        return isHREmployee;
+    }
+
+    public void setHREmployee(boolean HREmployee) {
+        isHREmployee = HREmployee;
+    }
+
+    public User getRequestedBy() {
+        return requestedBy;
+    }
+
+    public void setRequestedBy(User requestedBy) {
+        this.requestedBy = requestedBy;
+    }
+
+    public User getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(User approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+    public void requestShift(User user) {
+        this.requestedBy = user;
+    }
+
+    public void approveShift(User user) {
+        if (this.isHREmployee) {
+            this.approvedBy = user;
+        } else {
+            throw new RuntimeException("Only HR employees can approve shift requests.");
+        }
+    }
+
+    public void rejectShift() {
+        this.requestedBy = null;
+    }
 }
 
