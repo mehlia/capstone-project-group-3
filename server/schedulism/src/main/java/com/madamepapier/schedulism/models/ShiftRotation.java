@@ -18,6 +18,11 @@ public class ShiftRotation {
     private LocalDate date;
 
     @ManyToOne
+    @JoinColumn (name = "created_by_id")
+    @JsonIgnoreProperties ({"shiftRotations"})
+    private User createdBy;
+
+    @ManyToOne
     @JoinColumn (name = "user_id")
     @JsonIgnoreProperties ({"shiftRotations"})
     private User user;
@@ -26,9 +31,6 @@ public class ShiftRotation {
     @JoinColumn (name = "shiftType_id")
     @JsonIgnoreProperties ({"shiftRotations"})
     private ShiftType shiftType;
-
-    @Column
-    private boolean isHREmployee;
 
     @ManyToOne
     @JoinColumn (name = "requested_by_id")
@@ -41,21 +43,12 @@ public class ShiftRotation {
     private User approvedBy;
 
 
-    public ShiftRotation(LocalDate date, User user, ShiftType shiftType, boolean isHREmployee) {
+    public ShiftRotation(LocalDate date, User user, ShiftType shiftType) {
         this.date = date;
         this.user = user;
         this.shiftType = shiftType;
-        this.isHREmployee = isHREmployee;
     }
     public ShiftRotation() {
-    }
-
-    public ShiftType getShiftType() {
-        return shiftType;
-    }
-
-    public void setShiftType(ShiftType shiftType) {
-        this.shiftType = shiftType;
     }
 
     public User getUser() {
@@ -66,10 +59,25 @@ public class ShiftRotation {
         this.user = user;
     }
 
+    public ShiftType getShiftType() {
+        return shiftType;
+    }
+
+    public void setShiftType(ShiftType shiftType) {
+        this.shiftType = shiftType;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -80,14 +88,6 @@ public class ShiftRotation {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public boolean isHREmployee() {
-        return isHREmployee;
-    }
-
-    public void setHREmployee(boolean HREmployee) {
-        isHREmployee = HREmployee;
     }
 
     public User getRequestedBy() {
@@ -104,21 +104,6 @@ public class ShiftRotation {
 
     public void setApprovedBy(User approvedBy) {
         this.approvedBy = approvedBy;
-    }
-    public void requestShift(User user) {
-        this.requestedBy = user;
-    }
-
-    public void approveShift(User user) {
-        if (this.isHREmployee) {
-            this.approvedBy = user;
-        } else {
-            throw new RuntimeException("Only HR employees can approve shift requests.");
-        }
-    }
-
-    public void rejectShift() {
-        this.requestedBy = null;
     }
 }
 
