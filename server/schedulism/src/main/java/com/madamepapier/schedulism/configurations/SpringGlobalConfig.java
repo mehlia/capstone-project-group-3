@@ -1,4 +1,4 @@
-package com.bnta.the_bright_network.configurations;
+package com.madamepapier.schedulism.configurations;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

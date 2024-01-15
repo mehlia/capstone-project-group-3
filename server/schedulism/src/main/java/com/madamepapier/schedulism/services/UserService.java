@@ -7,6 +7,7 @@ import com.madamepapier.schedulism.repositories.ShiftRotationRepository;
 import com.madamepapier.schedulism.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
 
@@ -54,5 +55,41 @@ public class UserService {
             }
         }
         return userShifts;
+    }
+
+    // Create new user
+
+    public User createNewUser(User newUser, long requesterId){
+        User requester = userRepository.findById(requesterId).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE)){
+            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+        }
+        return userRepository.save(newUser);
+    }
+
+    // Delete a user -- do we need line 81??
+
+    public User deleteUser(long userId, long requesterId) {
+        User requester = userRepository.findById(requesterId).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE)) {
+            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+        }
+        User userToDelete = userRepository.findById(userId).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+        {
+         userRepository.deleteById(userId);
+        }
+        return null;
+    }
+
+    //Check if user is HR employee -- can implement this if/when we want to reduce code repetition
+    private void checkIfUserIsHREmployee(User user) {
+        if (user.getUserRole() != UserRole.HR_EMPLOYEE) {
+            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+        }
     }
 }
