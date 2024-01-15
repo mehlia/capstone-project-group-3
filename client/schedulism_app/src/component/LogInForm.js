@@ -10,7 +10,7 @@ const LogInForm = () => {
 
     const validateUser = async (inputPassword) => {
         try{
-            const response = await fetch(`http://localhost:8080/users/${inputPassword}`);
+            const response = await fetch(`http://localhost:8080/users/${inputPassword}/find/${inputPassword}`);
             const jsonData = await response.json();
 
             if(inputName === jsonData.name){
@@ -32,6 +32,9 @@ const LogInForm = () => {
     }
 
     const handleFormSubmit = (event) => {
+
+        event.preventDefault(); // prevents race condition
+
         if(!inputName || !inputPassword){
             alert("Please provide your username and password below.")
             return;
@@ -41,11 +44,6 @@ const LogInForm = () => {
             });
         }
 
-        event.preventDefault();
-        const newUser = {
-            inputName: inputName,
-            inputPassword: inputPassword,
-        }
 
 //      resets userinputName and password ( could remove )
         // setInputName("");
