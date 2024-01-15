@@ -56,10 +56,8 @@ public class ShiftRotationController {
         try {
             ShiftRotation updatedShiftRotation = shiftRotationService.addUserToShiftRotation(shiftRotationId, hrEmployeeId, userToAddId);
             return new ResponseEntity<>(updatedShiftRotation, HttpStatus.OK);
-        } catch (CustomException e) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomException("User is already on this shift.");
         }
     }
 

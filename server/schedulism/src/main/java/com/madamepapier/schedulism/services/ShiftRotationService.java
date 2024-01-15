@@ -62,9 +62,17 @@ public class ShiftRotationService {
         ShiftRotation existingShiftRotation = shiftRotationRepository.findById(shiftRotationId)
                 .orElseThrow(() -> new CustomException("Shift Rotation not found."));
 
-        if (existingShiftRotation != null && existingShiftRotation.getUser() != null) { // might need to use hasBeenRequested instead and set to true
-            throw new CustomException("User is already on this shift or User has already requested this shift.");
+        // Check if user is already assigned to the shift
+        if (existingShiftRotation != null && existingShiftRotation.getUser() != null && existingShiftRotation.getUser().getId() == userId) {
+            throw new CustomException("User is already on this shift.");
         }
+
+        // Check if user is already assigned to any other shift at the same time
+        List<ShiftRotation> userShifts = shiftRotationRepository.findAllByUserIdAndDate(userId, existingShiftRotation.getDate());
+        if (!userShifts.isEmpty()) {
+            throw new CustomException("User is already assigned to a shift at this time.");
+        }
+
         User hrEmployee = userRepository.findById(hrEmployeeId)
                 .orElseThrow(() -> new CustomException("HR Employee not found"));
         if (hrEmployee.getUserRole() != UserRole.HR_EMPLOYEE) {
@@ -73,7 +81,7 @@ public class ShiftRotationService {
         User userToAdd = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException("User not found"));;
 
-        assert existingShiftRotation != null;// added due to potential error when invoking set user method which could produce NullPointerException (?)
+//        assert existingShiftRotation != null;// added due to potential error when invoking set user method which could produce NullPointerException (?)
         existingShiftRotation.setUser(userToAdd);
 
         return shiftRotationRepository.save(existingShiftRotation);
