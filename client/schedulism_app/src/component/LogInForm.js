@@ -4,16 +4,16 @@ import { Outlet, useNavigate } from "react-router-dom";
 const LogInForm = () => {
 
     const navigate = useNavigate();
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
+    const [inputName, setInputName] = useState("");
+    const [inputPassword, setInputPassword] = useState("");
 
 
-    const validateUser = async (password) => {
+    const validateUser = async (inputPassword) => {
         try{
-            const response = await fetch(`http://localhost:8080/users/${password}`);
+            const response = await fetch(`http://localhost:8080/users/${inputPassword}`);
             const jsonData = await response.json();
 
-            if(name === jsonData.name){
+            if(inputName === jsonData.name){
                 // setLogInUser
                 navigate("/user-home");
             }
@@ -24,30 +24,31 @@ const LogInForm = () => {
     }
 
     const newUserName = (event) => {
-        setName(event.target.value);
+        setInputName(event.target.value);
     }
+
     const newUserPassword = (event) => {
-        setPassword(event.target.value);
+        setInputPassword(event.target.value);
     }
 
     const handleFormSubmit = (event) => {
-        if(!name || !password){
+        if(!inputName || !inputPassword){
             alert("Please provide your username and password below.")
             return;
         } else {
-            validateUser(password).catch((error) => {
+            validateUser(inputPassword).catch((error) => {
                 alert("Incorrect user info");
             });
         }
 
         event.preventDefault();
         const newUser = {
-            name: name,
-            password: password,
+            inputName: inputName,
+            inputPassword: inputPassword,
         }
 
-//      resets username and password ( could remove )
-        // setName("");
+//      resets userinputName and password ( could remove )
+        // setInputName("");
         // setPassword(""); 
 
     }
@@ -62,25 +63,24 @@ const LogInForm = () => {
         </section>
         <div className="form-container" >
             <form className="username-form" onSubmit={(event) => handleFormSubmit(event)}>
-                
-                <label htmlFor="username">Username: </label>
+                <label htmlFor="inputName">UserName: </label>
                 <input 
                     type="text" 
-                    className="username"
+                    className="login-input"
                     onInput={(event) => newUserName(event)}
-                    placeholder="insert username"
-                    value={name}
-                    id = "username"
+                    placeholder="insert userinputName"
+                    value={inputName}
+                    id = "inputName"
                 />
 
-                <label htmlFor="password-input">Password: </label>
+                <label htmlFor="inputPassword">Password: </label>
                 <input 
                     type="password" 
-                    className="password"
+                    className="login-input"
                     onInput={(event) => newUserPassword(event)}
                     placeholder="insert password"
-                    value={password}
-                    id = "password-input"
+                    value={inputPassword}
+                    id = "inputPassword"
                 />
 
                 <input type="submit" className="submit" value={"Log-in"}/>
