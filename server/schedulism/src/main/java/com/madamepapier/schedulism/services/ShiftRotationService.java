@@ -1,10 +1,7 @@
 package com.madamepapier.schedulism.services;
 
 import com.madamepapier.schedulism.components.CustomException;
-import com.madamepapier.schedulism.models.ShiftRotation;
-import com.madamepapier.schedulism.models.ShiftType;
-import com.madamepapier.schedulism.models.User;
-import com.madamepapier.schedulism.models.UserRole;
+import com.madamepapier.schedulism.models.*;
 import com.madamepapier.schedulism.repositories.ShiftRotationRepository;
 import com.madamepapier.schedulism.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +43,7 @@ public class ShiftRotationService {
 
 //    Create new shift rotation
 
-    public ShiftRotation createNewShiftRotation(long shiftTypeId, long createdByUserId, ShiftRotation newShiftRotation) {
+    public ShiftRotation createNewShiftRotation(ShiftRotationDTO shiftRotationDTO, long createdByUserId) {
         User createdBy = userRepository.findById(createdByUserId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
 
@@ -54,14 +51,16 @@ public class ShiftRotationService {
             throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
 
-        ShiftType shiftType = shiftTypeService.findShiftTypeById(shiftTypeId);
+        ShiftRotation newShiftRotation = new ShiftRotation();
+        newShiftRotation.setDate(shiftRotationDTO.getDate());
+        newShiftRotation.setShiftType(shiftRotationDTO.getShiftType());
         newShiftRotation.setCreatedBy(createdBy);
-        newShiftRotation.setShiftType(shiftType);
 
         return shiftRotationRepository.save(newShiftRotation);
     }
 
-//    Add user to existing shift
+
+    //    Add user to existing shift
     public ShiftRotation addUserToShiftRotation(long shiftRotationId, long hrEmployeeId, long userId) throws Exception {
         ShiftRotation existingShiftRotation = shiftRotationRepository.findById(shiftRotationId)
                 .orElseThrow(() -> new CustomException("Shift Rotation not found."));

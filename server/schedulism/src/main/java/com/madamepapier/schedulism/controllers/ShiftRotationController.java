@@ -2,6 +2,7 @@ package com.madamepapier.schedulism.controllers;
 
 import com.madamepapier.schedulism.components.CustomException;
 import com.madamepapier.schedulism.models.ShiftRotation;
+import com.madamepapier.schedulism.models.ShiftRotationDTO;
 import com.madamepapier.schedulism.models.User;
 import com.madamepapier.schedulism.services.ShiftRotationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +32,20 @@ public class ShiftRotationController {
     }
 
 //     Create a new shift rotation
-    @PostMapping("/{requesterId}/{shiftTypeId}")
+    @PostMapping("/createShift/{requesterId}")
     public ResponseEntity <ShiftRotation> createNewShiftRotation(
             @PathVariable long requesterId,
-            @PathVariable long shiftTypeId,
-            @RequestBody ShiftRotation newShiftRotation){
+            @RequestBody ShiftRotationDTO shiftRotationDTO){
         try{
-            ShiftRotation shift = shiftRotationService.createNewShiftRotation(shiftTypeId, requesterId, newShiftRotation);
-            return new ResponseEntity<>(shift, HttpStatus.CREATED);
-            } catch (ErrorResponseException e){
+            ShiftRotation newShift = shiftRotationService.createNewShiftRotation(shiftRotationDTO, requesterId);
+            return new ResponseEntity<>(newShift, HttpStatus.CREATED);
+        } catch (ErrorResponseException e){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
-//    Add user to existing shift
+
+    //    Add user to existing shift
     @PostMapping("/addUserToShift")
     public ResponseEntity<ShiftRotation> addUserToShiftRotation(
             @RequestParam long shiftRotationId,
