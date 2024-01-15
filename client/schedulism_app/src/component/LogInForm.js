@@ -20,7 +20,7 @@ const LogInForm = () => {
         } else {
             validateUser(password).catch((error) => {
                 alert("Incorrect user info");
-              });
+            });
         }
 
         event.preventDefault();
@@ -38,19 +38,19 @@ const LogInForm = () => {
 
     return ( 
     <>
-    <section class="login-form">
-        <section class="login-title">
+    <section className="login-form">
+        <section className="login-title">
             <h1>This is the login form</h1>
         </section>
-        <div class="form-container" >
-            <form class="username-form" onSubmit={(event) => handleFormSubmit(event)}>
-                <input type="username"/>
-                <input type="passwordç"/>
-                <input class="abcd"type="submit" value={"Log-in"}/>
+        <div className="form-container" >
+            <form className="username-form" onSubmit={(event) => handleFormSubmit(event)}>
+                <input type="text" className="username"/>
+                <input type="text" className="password"/>
+                <input type="submit" className="submit" value={"Log-in"}/>
             </form>
         </div>
     </section>
     </> );
 }
- 
+
 export default LogInForm;
