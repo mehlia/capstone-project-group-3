@@ -4,6 +4,9 @@ import NewUserForm from "../component/NewUserForm";
 import LogInForm from "../component/LogInForm";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import UserHome from "../component/UserHome";
+import NavBar from "../component/NavBar";
+import { Outlet } from "react-router-dom";
+
 
 const PapierContainer = () => {
     
@@ -39,10 +42,20 @@ const PapierContainer = () => {
     const userRoutes = createBrowserRouter ([
         {
             path: "/",
-            element: <LogInForm />,
-            children: [
+            element:
+            <>
+                <NavBar /> 
+                <Outlet /> {/* Place Outlet for nested content */}
+            </> ,
+            children: 
+            [
                 // Add more children next 
                 {
+                    path: "/",
+                    element: <LogInForm />
+                },
+                    
+                {    
                     path: "/user-home",
                     element: <UserHome />
                 }
