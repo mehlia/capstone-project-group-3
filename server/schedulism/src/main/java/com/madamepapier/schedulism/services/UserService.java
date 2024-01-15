@@ -69,7 +69,7 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    // Delete a user
+    // Delete a user -- do we need line 81??
 
     public User deleteUser(long userId, long requesterId) {
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
@@ -84,6 +84,12 @@ public class UserService {
          userRepository.deleteById(userId);
         }
         return null;
-//        throw new IllegalArgumentException("Account successfully deleted!"); // TBC, otherwise return to regular exception
+    }
+
+    //Check if user is HR employee -- can implement this if/when we want to reduce code repetition
+    private void checkIfUserIsHREmployee(User user) {
+        if (user.getUserRole() != UserRole.HR_EMPLOYEE) {
+            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+        }
     }
 }
