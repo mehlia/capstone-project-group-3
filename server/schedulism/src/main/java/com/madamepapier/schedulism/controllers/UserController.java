@@ -40,7 +40,7 @@ public class UserController {
         }
     }
 
-    //Get all shift by user's id -- think this needs working on
+    //Get all shift by user's id
     @GetMapping("/{userId}/shift-rotations")
     public ResponseEntity<List<ShiftRotation>> findAllShiftsByUserId(@PathVariable long userId){
         try{
@@ -64,6 +64,7 @@ public class UserController {
         }
     }
 
+//    Delete user
     @DeleteMapping("/{requesterId}/{userId}")
     public ResponseEntity<User> deleteUserById(
             @PathVariable long requesterId,
