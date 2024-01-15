@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-const LogInForm = () => {
+const LogInForm = ({updateGlobalUser}) => {
 
     const navigate = useNavigate();
     const [inputName, setInputName] = useState("");
@@ -14,7 +14,9 @@ const LogInForm = () => {
             const jsonData = await response.json();
 
             if(inputName === jsonData.name){
-                // setLogInUser
+                // setLogInUser --> redirects to the user home
+                
+                updateGlobalUser(inputPassword)
                 navigate("/user-home");
             }
 
@@ -39,11 +41,11 @@ const LogInForm = () => {
             alert("Please provide your username and password below.")
             return;
         } else {
+            // Refactor this for later
             validateUser(inputPassword).catch((error) => {
                 alert("Incorrect user info");
             });
         }
-
 
 //      resets userinputName and password ( could remove )
         // setInputName("");
@@ -66,7 +68,7 @@ const LogInForm = () => {
                     type="text" 
                     className="login-input"
                     onInput={(event) => newUserName(event)}
-                    placeholder="insert userinputName"
+                    placeholder="insert username"
                     value={inputName}
                     id = "inputName"
                 />
