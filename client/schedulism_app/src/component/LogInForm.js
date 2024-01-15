@@ -8,7 +8,6 @@ const LogInForm = () => {
     const [password, setPassword] = useState("");
 
 
-
     const validateUser = async (password) => {
         try{
             const response = await fetch(`http://localhost:8080/users/${password}`);
@@ -41,8 +40,6 @@ const LogInForm = () => {
             });
         }
 
-        
-
         event.preventDefault();
         const newUser = {
             name: name,
@@ -50,12 +47,10 @@ const LogInForm = () => {
         }
 
 //      resets username and password ( could remove )
-        setName("");
-        setPassword(""); 
+        // setName("");
+        // setPassword(""); 
 
     }
-
-    
 
 
     return ( 
@@ -85,7 +80,7 @@ const LogInForm = () => {
                     onInput={(event) => newUserPassword(event)}
                     placeholder="insert password"
                     value={password}
-                    id = "password-imput"
+                    id = "password-input"
                 />
 
                 <input type="submit" className="submit" value={"Log-in"}/>
