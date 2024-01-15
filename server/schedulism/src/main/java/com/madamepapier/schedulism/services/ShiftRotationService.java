@@ -26,20 +26,13 @@ public class ShiftRotationService {
 
 
 //   Find shift rotation by ID
-    public ShiftRotation findShiftRotationById(long shiftRotationId, long requesterId){
-        User requester = userRepository.findById(requesterId)
-                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
-        ShiftRotation shiftRotationToFind  = shiftRotationRepository.findById(shiftRotationId)
-                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
+    public ShiftRotation findShiftRotationById(long shiftRotationId){
 
-        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE) && (requesterId != shiftRotationToFind.getCreatedBy().getId())) {
-            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
-        }
-        return shiftRotationToFind;
+        return shiftRotationRepository.findById(shiftRotationId)
+                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
     }
 
 //    Create new shift rotation
-
     public ShiftRotation createNewShiftRotation(ShiftRotationDTO shiftRotationDTO, long createdByUserId) {
         User createdBy = userRepository.findById(createdByUserId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
@@ -81,7 +74,6 @@ public class ShiftRotationService {
         User userToAdd = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException("User not found"));;
 
-//        assert existingShiftRotation != null;// added due to potential error when invoking set user method which could produce NullPointerException (?)
         existingShiftRotation.setUser(userToAdd);
 
         return shiftRotationRepository.save(existingShiftRotation);
@@ -100,7 +92,7 @@ public class ShiftRotationService {
         shiftRotationRepository.save(shiftRotation);
     }
 
-    // Approve a shift request -- should make this void?
+    // Approve a shift request
     public void approveShift(long shiftRotationId, long hrEmployeeId) {
         ShiftRotation shiftToApprove = shiftRotationRepository.findById(shiftRotationId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
@@ -111,7 +103,6 @@ public class ShiftRotationService {
             throw new CustomException("Only HR employees can approve shift requests.");
         }
 
-//        shiftToApprove.setApprovedBy(approver);
         shiftToApprove.setApproved(true);
         shiftToApprove.setHasBeenRequested(false);
         shiftRotationRepository.save(shiftToApprove);

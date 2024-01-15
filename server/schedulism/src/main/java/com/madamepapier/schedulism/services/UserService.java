@@ -58,7 +58,6 @@ public class UserService {
     }
 
     // Create new user
-
     public User createNewUser(User newUser, long requesterId){
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
@@ -69,8 +68,7 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    // Delete a user -- do we need line 81??
-
+    // Delete a user
     public User deleteUser(long userId, long requesterId) {
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));

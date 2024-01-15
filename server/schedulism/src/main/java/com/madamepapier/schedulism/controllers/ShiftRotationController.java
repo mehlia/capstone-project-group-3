@@ -21,15 +21,14 @@ public class ShiftRotationController {
     ShiftRotationService shiftRotationService;
 
 //    Find shift by ID
-    @GetMapping("/{shiftRotationId}/users/{requesterId}")
+    @GetMapping("/{shiftRotationId}")
     public ResponseEntity<ShiftRotation> findShiftById(
-            @PathVariable long shiftRotationId,
-            @PathVariable long requesterId){
+            @PathVariable long shiftRotationId){
         try {
-            ShiftRotation foundShift = shiftRotationService.findShiftRotationById(shiftRotationId, requesterId);
+            ShiftRotation foundShift = shiftRotationService.findShiftRotationById(shiftRotationId);
             return new ResponseEntity<>(foundShift, HttpStatus.OK);
         } catch (ErrorResponseException e) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -45,7 +44,6 @@ public class ShiftRotationController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
-
 
     //    Add user to existing shift
     @PostMapping("/addUserToShift")
