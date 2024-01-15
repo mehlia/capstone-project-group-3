@@ -62,8 +62,9 @@ public class ShiftRotationService {
     }
 
 //    Add user to existing shift
-    public ShiftRotation addUserToShiftRotation(long shiftTypeId, long hrEmployeeId, long userId) throws Exception { // might need to be shiftRotationId
-        ShiftRotation existingShiftRotation = shiftRotationRepository.findByShiftTypeIdAndUserId(shiftTypeId, userId);
+    public ShiftRotation addUserToShiftRotation(long shiftRotationId, long hrEmployeeId, long userId) throws Exception {
+        ShiftRotation existingShiftRotation = shiftRotationRepository.findById(shiftRotationId)
+                .orElseThrow(() -> new CustomException("Shift Rotation not found."));
 
         if (existingShiftRotation != null && existingShiftRotation.getRequestedBy() != null) {
             throw new CustomException("User is already on this shift.");
@@ -76,14 +77,10 @@ public class ShiftRotationService {
         User userToAdd = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException("User not found"));;
 
-        ShiftType shiftTypeToAdd = existingShiftRotation.getShiftType();
-
+        assert existingShiftRotation != null;// added due to potential error when invoking set user method which could produce NullPointerException (?)
         existingShiftRotation.setUser(userToAdd);
-        existingShiftRotation.setShiftType(shiftTypeToAdd);
 
-        ShiftRotation updatedShiftRotation = shiftRotationRepository.save(existingShiftRotation);
-
-        return updatedShiftRotation;
+        return shiftRotationRepository.save(existingShiftRotation);
     }
 
     // Request a shift

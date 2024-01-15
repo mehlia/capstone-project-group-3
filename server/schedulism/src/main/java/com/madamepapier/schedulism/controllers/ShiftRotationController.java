@@ -1,5 +1,6 @@
 package com.madamepapier.schedulism.controllers;
 
+import com.madamepapier.schedulism.components.CustomException;
 import com.madamepapier.schedulism.models.ShiftRotation;
 import com.madamepapier.schedulism.models.User;
 import com.madamepapier.schedulism.services.ShiftRotationService;
@@ -44,7 +45,7 @@ public class ShiftRotationController {
     }
 
 //    Add user to existing shift
-    @PostMapping("/{shiftRotationId}/add/{userId}")
+    @PostMapping("/addUserToShift")
     public ResponseEntity<ShiftRotation> addUserToShiftRotation(
             @RequestParam long shiftRotationId,
             @RequestParam long hrEmployeeId,
@@ -52,8 +53,10 @@ public class ShiftRotationController {
         try {
             ShiftRotation updatedShiftRotation = shiftRotationService.addUserToShiftRotation(shiftRotationId, hrEmployeeId, userToAddId);
             return new ResponseEntity<>(updatedShiftRotation, HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (CustomException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
