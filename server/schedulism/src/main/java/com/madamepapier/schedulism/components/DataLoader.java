@@ -122,22 +122,22 @@ public class DataLoader implements ApplicationRunner {
         ShiftRotation shiftRotationOne = new ShiftRotation(
                 LocalDate.of(2023,01, 01),
                 userOne,
-                shiftTypeOne);
+                shiftTypeOne, true, false);
 
         ShiftRotation shiftRotationTwo = new ShiftRotation(
                 LocalDate.of(2023,01, 01),
                 userFour,
-                shiftTypeOne);
+                shiftTypeOne, true, false);
 
         ShiftRotation shiftRotationThree = new ShiftRotation(
                 LocalDate.of(2023,01, 02),
                 userOne,
-                shiftTypeThree);
+                shiftTypeThree, true, false);
 
         ShiftRotation shiftRotationFour = new ShiftRotation(
                 LocalDate.of(2023,01, 03),
                 userOne,
-                shiftTypeFour);
+                shiftTypeFour, true, false);
 
 
         shiftRotationRepository.save(shiftRotationOne);

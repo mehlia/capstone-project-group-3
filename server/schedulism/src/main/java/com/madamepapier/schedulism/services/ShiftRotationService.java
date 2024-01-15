@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
-
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShiftRotationService {
@@ -65,8 +62,8 @@ public class ShiftRotationService {
         ShiftRotation existingShiftRotation = shiftRotationRepository.findById(shiftRotationId)
                 .orElseThrow(() -> new CustomException("Shift Rotation not found."));
 
-        if (existingShiftRotation != null && existingShiftRotation.getRequestedBy() != null) {
-            throw new CustomException("User is already on this shift.");
+        if (existingShiftRotation != null && existingShiftRotation.getUser() != null) { // might need to use hasBeenRequested instead and set to true
+            throw new CustomException("User is already on this shift or User has already requested this shift.");
         }
         User hrEmployee = userRepository.findById(hrEmployeeId)
                 .orElseThrow(() -> new CustomException("HR Employee not found"));
@@ -90,22 +87,36 @@ public class ShiftRotationService {
         User requester = userRepository.findById(requesterId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        shiftRotation.setRequestedBy(requester);
+        shiftRotation.setUser(requester);
+        shiftRotation.setHasBeenRequested(true);
         shiftRotationRepository.save(shiftRotation);
     }
 
     // Approve a shift request -- should make this void?
-    public ShiftRotation approveShift(long shiftRotationId, long approverId) {
+    public void approveShift(long shiftRotationId, long hrEmployeeId) {
         ShiftRotation shiftToApprove = shiftRotationRepository.findById(shiftRotationId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
-        User approver = userRepository.findById(approverId)
+        User hrEmployee = userRepository.findById(hrEmployeeId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        if (approver.getUserRole() != UserRole.HR_EMPLOYEE) {
+        if (hrEmployee.getUserRole() != UserRole.HR_EMPLOYEE) {
             throw new CustomException("Only HR employees can approve shift requests.");
         }
 
-        shiftToApprove.setApprovedBy(approver);
-        return shiftRotationRepository.save(shiftToApprove);
+//        shiftToApprove.setApprovedBy(approver);
+        shiftToApprove.setApproved(true);
+        shiftToApprove.setHasBeenRequested(false);
+        shiftRotationRepository.save(shiftToApprove);
+    }
+
+    // View all shift requests (only HR)
+    public List<ShiftRotation> viewAllShiftRequests(long hrEmployeeId){
+        User hrEmployee = userRepository.findById(hrEmployeeId)
+                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        if (hrEmployee.getUserRole() != UserRole.HR_EMPLOYEE) {
+            throw new CustomException("Only HR employees can view shift requests.");
+        }
+        return shiftRotationRepository.findAllByHasBeenRequestedTrue();
     }
 }

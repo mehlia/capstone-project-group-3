@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("shift-rotations")
 public class ShiftRotationController {
@@ -61,14 +63,15 @@ public class ShiftRotationController {
         }
     }
 
-    // HR approve shift
-    @PostMapping("/{shiftRotationId}/approve/{userId}")
+//     HR approve shift
+    @PostMapping("/{shiftRotationId}/approve/{hrEmployeeId}")
     public ResponseEntity<ShiftRotation> approveShift(
             @PathVariable long shiftRotationId,
-            @PathVariable long userId) {
+            @PathVariable long hrEmployeeId) {
         try {
-            ShiftRotation approvedShift = shiftRotationService.approveShift(shiftRotationId, userId);
-            return new ResponseEntity<>(approvedShift, HttpStatus.OK);
+//            ShiftRotation approvedShift = shiftRotationService.approveShift(shiftRotationId, userId);
+            shiftRotationService.approveShift(shiftRotationId, hrEmployeeId);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -84,6 +87,17 @@ public class ShiftRotationController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    // Get all shift requests, HR only
+    @GetMapping("/shiftRequests/{hrEmployeeId}")
+    public ResponseEntity<List<ShiftRotation>> viewAllShiftRequests(@PathVariable long hrEmployeeId){
+        try{
+            List<ShiftRotation> shiftRequests = shiftRotationService.viewAllShiftRequests(hrEmployeeId);
+            return new ResponseEntity<>(shiftRequests, HttpStatus.OK);
+        } catch (ErrorResponseException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
