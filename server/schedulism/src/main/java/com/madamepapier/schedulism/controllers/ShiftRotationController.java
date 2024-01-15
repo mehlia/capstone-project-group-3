@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("shift-rotations")
 public class ShiftRotationController {
@@ -19,15 +21,14 @@ public class ShiftRotationController {
     ShiftRotationService shiftRotationService;
 
 //    Find shift by ID
-    @GetMapping("/{shiftRotationId}/users/{requesterId}")
+    @GetMapping("/{shiftRotationId}")
     public ResponseEntity<ShiftRotation> findShiftById(
-            @PathVariable long shiftRotationId,
-            @PathVariable long requesterId){
+            @PathVariable long shiftRotationId){
         try {
-            ShiftRotation foundShift = shiftRotationService.findShiftRotationById(shiftRotationId, requesterId);
+            ShiftRotation foundShift = shiftRotationService.findShiftRotationById(shiftRotationId);
             return new ResponseEntity<>(foundShift, HttpStatus.OK);
         } catch (ErrorResponseException e) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -44,7 +45,6 @@ public class ShiftRotationController {
         }
     }
 
-
     //    Add user to existing shift
     @PostMapping("/addUserToShift")
     public ResponseEntity<ShiftRotation> addUserToShiftRotation(
@@ -54,21 +54,20 @@ public class ShiftRotationController {
         try {
             ShiftRotation updatedShiftRotation = shiftRotationService.addUserToShiftRotation(shiftRotationId, hrEmployeeId, userToAddId);
             return new ResponseEntity<>(updatedShiftRotation, HttpStatus.OK);
-        } catch (CustomException e) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomException("User is already on this shift.");
         }
     }
 
-    // HR approve shift
-    @PostMapping("/{shiftRotationId}/approve/{userId}")
+//     HR approve shift
+    @PostMapping("/{shiftRotationId}/approve/{hrEmployeeId}")
     public ResponseEntity<ShiftRotation> approveShift(
             @PathVariable long shiftRotationId,
-            @PathVariable long userId) {
+            @PathVariable long hrEmployeeId) {
         try {
-            ShiftRotation approvedShift = shiftRotationService.approveShift(shiftRotationId, userId);
-            return new ResponseEntity<>(approvedShift, HttpStatus.OK);
+//            ShiftRotation approvedShift = shiftRotationService.approveShift(shiftRotationId, userId);
+            shiftRotationService.approveShift(shiftRotationId, hrEmployeeId);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -84,6 +83,17 @@ public class ShiftRotationController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    // Get all shift requests, HR only
+    @GetMapping("/shiftRequests/{hrEmployeeId}")
+    public ResponseEntity<List<ShiftRotation>> viewAllShiftRequests(@PathVariable long hrEmployeeId){
+        try{
+            List<ShiftRotation> shiftRequests = shiftRotationService.viewAllShiftRequests(hrEmployeeId);
+            return new ResponseEntity<>(shiftRequests, HttpStatus.OK);
+        } catch (ErrorResponseException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
-
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShiftRotationService {
@@ -29,20 +26,13 @@ public class ShiftRotationService {
 
 
 //   Find shift rotation by ID
-    public ShiftRotation findShiftRotationById(long shiftRotationId, long requesterId){
-        User requester = userRepository.findById(requesterId)
-                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
-        ShiftRotation shiftRotationToFind  = shiftRotationRepository.findById(shiftRotationId)
-                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
+    public ShiftRotation findShiftRotationById(long shiftRotationId){
 
-        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE) && (requesterId != shiftRotationToFind.getCreatedBy().getId())) {
-            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
-        }
-        return shiftRotationToFind;
+        return shiftRotationRepository.findById(shiftRotationId)
+                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
     }
 
 //    Create new shift rotation
-
     public ShiftRotation createNewShiftRotation(ShiftRotationDTO shiftRotationDTO, long createdByUserId) {
         User createdBy = userRepository.findById(createdByUserId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
@@ -65,9 +55,17 @@ public class ShiftRotationService {
         ShiftRotation existingShiftRotation = shiftRotationRepository.findById(shiftRotationId)
                 .orElseThrow(() -> new CustomException("Shift Rotation not found."));
 
-        if (existingShiftRotation != null && existingShiftRotation.getRequestedBy() != null) {
+        // Check if user is already assigned to the shift
+        if (existingShiftRotation != null && existingShiftRotation.getUser() != null && existingShiftRotation.getUser().getId() == userId) {
             throw new CustomException("User is already on this shift.");
         }
+
+        // Check if user is already assigned to any other shift at the same time
+        List<ShiftRotation> userShifts = shiftRotationRepository.findAllByUserIdAndDate(userId, existingShiftRotation.getDate());
+        if (!userShifts.isEmpty()) {
+            throw new CustomException("User is already assigned to a shift at this time.");
+        }
+
         User hrEmployee = userRepository.findById(hrEmployeeId)
                 .orElseThrow(() -> new CustomException("HR Employee not found"));
         if (hrEmployee.getUserRole() != UserRole.HR_EMPLOYEE) {
@@ -76,7 +74,6 @@ public class ShiftRotationService {
         User userToAdd = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException("User not found"));;
 
-        assert existingShiftRotation != null;// added due to potential error when invoking set user method which could produce NullPointerException (?)
         existingShiftRotation.setUser(userToAdd);
 
         return shiftRotationRepository.save(existingShiftRotation);
@@ -90,22 +87,35 @@ public class ShiftRotationService {
         User requester = userRepository.findById(requesterId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        shiftRotation.setRequestedBy(requester);
+        shiftRotation.setUser(requester);
+        shiftRotation.setHasBeenRequested(true);
         shiftRotationRepository.save(shiftRotation);
     }
 
-    // Approve a shift request -- should make this void?
-    public ShiftRotation approveShift(long shiftRotationId, long approverId) {
+    // Approve a shift request
+    public void approveShift(long shiftRotationId, long hrEmployeeId) {
         ShiftRotation shiftToApprove = shiftRotationRepository.findById(shiftRotationId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
-        User approver = userRepository.findById(approverId)
+        User hrEmployee = userRepository.findById(hrEmployeeId)
                 .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        if (approver.getUserRole() != UserRole.HR_EMPLOYEE) {
+        if (hrEmployee.getUserRole() != UserRole.HR_EMPLOYEE) {
             throw new CustomException("Only HR employees can approve shift requests.");
         }
 
-        shiftToApprove.setApprovedBy(approver);
-        return shiftRotationRepository.save(shiftToApprove);
+        shiftToApprove.setApproved(true);
+        shiftToApprove.setHasBeenRequested(false);
+        shiftRotationRepository.save(shiftToApprove);
+    }
+
+    // View all shift requests (only HR)
+    public List<ShiftRotation> viewAllShiftRequests(long hrEmployeeId){
+        User hrEmployee = userRepository.findById(hrEmployeeId)
+                .orElseThrow(() -> new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        if (hrEmployee.getUserRole() != UserRole.HR_EMPLOYEE) {
+            throw new CustomException("Only HR employees can view shift requests.");
+        }
+        return shiftRotationRepository.findAllByHasBeenRequestedTrue();
     }
 }

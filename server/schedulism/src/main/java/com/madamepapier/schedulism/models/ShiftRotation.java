@@ -32,21 +32,28 @@ public class ShiftRotation {
     @JsonIgnoreProperties ({"shiftRotations"})
     private ShiftType shiftType;
 
-    @ManyToOne
-    @JoinColumn (name = "requested_by_id")
-    @JsonIgnoreProperties ({"requestedShifts"})
-    private User requestedBy;
+//    @ManyToOne
+//    @JoinColumn (name = "requested_by_id")
+//    @JsonIgnoreProperties ({"requestedShifts"})
+//    private User requestedBy;
 
-    @ManyToOne
-    @JoinColumn (name = "approved_by_id")
-    @JsonIgnoreProperties ({"approvedShifts"})
-    private User approvedBy;
+//    @ManyToOne
+//    @JoinColumn (name = "approved_by_id")
+//    @JsonIgnoreProperties ({"approvedShifts"})
+//    private User approvedBy;
+    @Column
+   private boolean isApproved;
+
+    @Column
+   private boolean hasBeenRequested;
 
 
-    public ShiftRotation(LocalDate date, User user, ShiftType shiftType) {
+    public ShiftRotation(LocalDate date, User user, ShiftType shiftType, boolean isApproved, boolean hasBeenRequested) {
         this.date = date;
         this.user = user;
         this.shiftType = shiftType;
+        this.isApproved = false;
+        this.hasBeenRequested = false;
     }
     public ShiftRotation() {
     }
@@ -90,20 +97,37 @@ public class ShiftRotation {
         this.date = date;
     }
 
-    public User getRequestedBy() {
-        return requestedBy;
+    public boolean isApproved() {
+        return isApproved;
     }
 
-    public void setRequestedBy(User requestedBy) {
-        this.requestedBy = requestedBy;
+    public void setApproved(boolean approved) {
+        isApproved = approved;
     }
 
-    public User getApprovedBy() {
-        return approvedBy;
+    public boolean isHasBeenRequested() {
+        return hasBeenRequested;
     }
 
-    public void setApprovedBy(User approvedBy) {
-        this.approvedBy = approvedBy;
+    public void setHasBeenRequested(boolean hasBeenRequested) {
+        this.hasBeenRequested = hasBeenRequested;
     }
+
+    //
+//    public User getRequestedBy() {
+//        return requestedBy;
+//    }
+//
+//    public void setRequestedBy(User requestedBy) {
+//        this.requestedBy = requestedBy;
+//    }
+//
+//    public User getApprovedBy() {
+//        return approvedBy;
+//    }
+//
+//    public void setApprovedBy(User approvedBy) {
+//        this.approvedBy = approvedBy;
+//    }
 }
 
