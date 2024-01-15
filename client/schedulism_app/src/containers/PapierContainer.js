@@ -45,7 +45,7 @@ const PapierContainer = () => {
             element:
             <>
                 <NavBar /> 
-                <Outlet /> {/* Place Outlet for nested content */}
+                <Outlet /> {/* To make sure it loads the log-in form */}
             </> ,
             children: 
             [
