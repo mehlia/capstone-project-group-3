@@ -75,21 +75,13 @@ const PapierContainer = () => {
                 {
                     path: "/",
                     element:
-                    <> 
-                    <ClientUserContext.Provider value={globalUser}> 
                     <LogInForm updateGlobalUser={updateGlobalUser}/>
-                    </ClientUserContext.Provider>
-                    </>
                 },
                     
                 {    
                     path: "/user-home",
                     element: 
-                    <>
-                    <ClientUserContext.Provider value={globalUser}> 
                     <UserHome />
-                    </ClientUserContext.Provider>
-                    </>
                 }
             ]
         }
@@ -97,7 +89,9 @@ const PapierContainer = () => {
 
     return ( 
     <>
+        <ClientUserContext.Provider value={globalUser}> 
         <RouterProvider router={userRoutes} />
+        </ClientUserContext.Provider>
     </> 
     );
 }
