@@ -2,17 +2,19 @@ import MultilevelSidebar from "react-multilevel-sidebar";
 import "react-multilevel-sidebar/src/Sidebar.css";
 import { Sidebar, Menu, MenuItem } from "react-multilevel-sidebar";
 import { GlobalUserContext } from "../containers/PapierContainer";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const NavBar = () => {
   const { globalUser } = useContext(GlobalUserContext) || {};
+  const [isOpen, setIsOpen] = useState(false);
 
-  let options;
-  if (globalUser.userRole === "EMPLOYEE") {
-    options = [
+  let options = [];
+  if (globalUser && globalUser.userRole === "EMPLOYEE") {
+      options = [
       {
         title: "Home",
-        content: [{ id: 1, name: "Home", to: "/home" }], //Make sure to include icons, titleIcon
+        content: [{ id: 1, name: "Home", to: "/home" }], 
       },
       {
         title: "Personal Info",
@@ -35,11 +37,11 @@ const NavBar = () => {
         content: [{ id: 6, name: "Sign Out", to: "/sign-out" }],
       },
     ];
-  } else if (globalUser.userRole === "HR_EMPLOYEE") {
+  } else if (globalUser && globalUser.userRole === "HR_EMPLOYEE") {
     options = [
       {
         title: "Home",
-        content: [{ id: 1, name: "Home", to: "/home" }], //Make sure to include icons, titleIcon
+        content: [{ id: 1, name: "Home", to: "/home" }],
       },
       {
         title: "Personal Info",
@@ -89,16 +91,16 @@ const NavBar = () => {
   }
 
   return (
-    <div>
+    <>
       <MultilevelSidebar
-        open={this.state.isOpen}
-        onToggle={this.handleSidebarToggle}
+        open={isOpen}
+        onToggle={() => setIsOpen(!isOpen)}
         options={options}
-        header="React-MultiLevel-Sidebar"
-        onItemClick={this.handleClick}
+        header="Schedulism"
+        // onItemClick={handleClick}
       />
-      <button onClick={() => this.handleSidebarToggle(true)}>open</button>
-    </div>
+      <button onClick={() => setIsOpen(true)}>open</button>
+    </>
   );
 };
 
