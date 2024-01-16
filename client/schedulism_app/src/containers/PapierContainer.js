@@ -7,7 +7,7 @@ import UserHome from "../component/UserHome";
 import NavBar from "../component/NavBar";
 import { Outlet } from "react-router-dom";
 
-export const ClientUserContext = createContext();
+export const GlobalUserContext = createContext();
 
 const PapierContainer = () => {
     
@@ -89,9 +89,10 @@ const PapierContainer = () => {
 
     return ( 
     <>
-        <ClientUserContext.Provider value={globalUser}> 
-        <RouterProvider router={userRoutes} />
-        </ClientUserContext.Provider>
+        <GlobalUserContext.Provider value={{globalUser : globalUser || {}}}> 
+            <RouterProvider router={userRoutes} />
+        </GlobalUserContext.Provider>
+        <NavBar/>
     </> 
     );
 }
