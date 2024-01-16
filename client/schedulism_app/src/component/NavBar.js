@@ -34,7 +34,7 @@ const NavBar = () => {
       },
       {
         title: "Sign Out",
-        content: [{ id: 6, name: "Sign Out", to: "/sign-out" }],
+        content: [{ id: 6, name: "Sign Out", to: "/" }],
       },
     ];
   } else if (globalUser && globalUser.userRole === "HR_EMPLOYEE") {
@@ -85,7 +85,7 @@ const NavBar = () => {
       },
       {
         title: "Sign Out",
-        content: [{ id: 15, name: "Sign Out", to: "/sign-out" }],
+        content: [{ id: 15, name: "Sign Out", to: "/" }],
       },
     ];
   }
@@ -101,9 +101,7 @@ const NavBar = () => {
         // onItemClick={handleClick}
       />
       <button onClick={() => setIsOpen(true)}>open</button>
-       {/* <button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? "Close" : "Open"} Sidebar */}
-      {/* </button>  */}
+      
     </>
   );
 };
