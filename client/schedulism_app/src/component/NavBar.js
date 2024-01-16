@@ -9,34 +9,12 @@ const NavBar = () => {
   const { globalUser } = useContext(GlobalUserContext) || {};
   const [isOpen, setIsOpen] = useState(false);
 
-  //   const isUserAvailable = async ({options})=> {
-  //   return (
-  //      <nav>
-  //     <ul>
-  //       {options.map((option) => (
-  //         <li key={option.title}>
-  //           <h2>{option.title}</h2>
-  //           <ul>
-  //             {option.content.map((option) => (
-  //               <li key={option.id}>
-  //                <Link to={option.to}>{option.name}</Link>
-  //               </li>
-  //             ))}
-  //           </ul>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </nav>)
-  //   }
-
-  //   if(globalUser.id){
-
   let options = [];
   if (globalUser && globalUser.userRole === "EMPLOYEE") {
       options = [
       {
         title: "Home",
-        content: [{ id: 1, name: "Home", to: "/home" }], //Make sure to include icons, titleIcon
+        content: [{ id: 1, name: "Home", to: "/home" }], 
       },
       {
         title: "Personal Info",
@@ -63,7 +41,7 @@ const NavBar = () => {
     options = [
       {
         title: "Home",
-        content: [{ id: 1, name: "Home", to: "/home" }], //Make sure to include icons, titleIcon
+        content: [{ id: 1, name: "Home", to: "/home" }],
       },
       {
         title: "Personal Info",
@@ -111,12 +89,6 @@ const NavBar = () => {
       },
     ];
   }
-  
-  //  }
-
-  // useEffect(() =>{
-  // isUserAvailable(option)
-  // },[]);
 
   return (
     <>
@@ -128,7 +100,6 @@ const NavBar = () => {
         // onItemClick={handleClick}
       />
       <button onClick={() => setIsOpen(true)}>open</button>
-      <Outlet />
     </>
   );
 };
