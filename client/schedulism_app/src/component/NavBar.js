@@ -5,10 +5,10 @@ import { GlobalUserContext } from "../containers/PapierContainer";
 import { useContext } from "react";
 
 const NavBar = () => {
-  const { globalUser } = useContext(GlobalUserContext);
+  const { globalUser } = useContext(GlobalUserContext) || {};
 
   let options;
-  if (globalUser.user_role === "EMPLOYEE") {
+  if (globalUser.userRole === "EMPLOYEE") {
     options = [
       {
         title: "Home",
@@ -35,7 +35,7 @@ const NavBar = () => {
         content: [{ id: 6, name: "Sign Out", to: "/sign-out" }],
       },
     ];
-  } else if (globalUser.user_role === "HR_EMPLOYEE") {
+  } else if (globalUser.userRole === "HR_EMPLOYEE") {
     options = [
       {
         title: "Home",
@@ -89,16 +89,16 @@ const NavBar = () => {
   }
 
   return (
-    <>
-      <h1>This is the nav bar</h1>
+    <div>
       <MultilevelSidebar
-        open={true}
-        onToggle={() => {}}
+        open={this.state.isOpen}
+        onToggle={this.handleSidebarToggle}
         options={options}
-        header="Navigation"
-        onItemClick={() => {}}
+        header="React-MultiLevel-Sidebar"
+        onItemClick={this.handleClick}
       />
-    </>
+      <button onClick={() => this.handleSidebarToggle(true)}>open</button>
+    </div>
   );
 };
 
