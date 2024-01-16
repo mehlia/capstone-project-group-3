@@ -92,7 +92,8 @@ const NavBar = () => {
 
   return (
     <>
-      <MultilevelSidebar
+         
+    <MultilevelSidebar
         open={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
         options={options}
@@ -100,6 +101,9 @@ const NavBar = () => {
         // onItemClick={handleClick}
       />
       <button onClick={() => setIsOpen(true)}>open</button>
+       {/* <button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? "Close" : "Open"} Sidebar */}
+      {/* </button>  */}
     </>
   );
 };

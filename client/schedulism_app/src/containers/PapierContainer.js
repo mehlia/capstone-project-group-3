@@ -97,7 +97,6 @@ const PapierContainer = () => {
         <GlobalUserContext.Provider value={{globalUser, setGlobalUser}}> 
             <RouterProvider router={userRoutes} />
         </GlobalUserContext.Provider>
-        <NavBar/>
     </> 
     );
 }
