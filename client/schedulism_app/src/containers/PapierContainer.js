@@ -22,7 +22,7 @@ const PapierContainer = () => {
             id: null,
             email: null,
             occupation: null,
-            user_role: null,
+            userRole: null,
             username: null,
             shiftRotations: []
         });
@@ -53,7 +53,7 @@ const PapierContainer = () => {
             id: jsonData.id,
             email: jsonData.email,
             occupation: jsonData.occupation,
-            user_role: jsonData.user_role,
+            userRole: jsonData.userRole,
             username: jsonData.username,
             shiftRotations: jsonData.shiftRotations
         })
