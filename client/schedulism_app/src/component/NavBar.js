@@ -2,14 +2,38 @@ import MultilevelSidebar from "react-multilevel-sidebar";
 import "react-multilevel-sidebar/src/Sidebar.css";
 import { Sidebar, Menu, MenuItem } from "react-multilevel-sidebar";
 import { GlobalUserContext } from "../containers/PapierContainer";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const NavBar = () => {
   const { globalUser } = useContext(GlobalUserContext) || {};
+  const [isOpen, setIsOpen] = useState(false);
 
-  let options;
-  if (globalUser.userRole === "EMPLOYEE") {
-    options = [
+  //   const isUserAvailable = async ({options})=> {
+  //   return (
+  //      <nav>
+  //     <ul>
+  //       {options.map((option) => (
+  //         <li key={option.title}>
+  //           <h2>{option.title}</h2>
+  //           <ul>
+  //             {option.content.map((option) => (
+  //               <li key={option.id}>
+  //                <Link to={option.to}>{option.name}</Link>
+  //               </li>
+  //             ))}
+  //           </ul>
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </nav>)
+  //   }
+
+  //   if(globalUser.id){
+
+  let options = [];
+  if (globalUser && globalUser.userRole === "EMPLOYEE") {
+      options = [
       {
         title: "Home",
         content: [{ id: 1, name: "Home", to: "/home" }], //Make sure to include icons, titleIcon
@@ -35,7 +59,7 @@ const NavBar = () => {
         content: [{ id: 6, name: "Sign Out", to: "/sign-out" }],
       },
     ];
-  } else if (globalUser.userRole === "HR_EMPLOYEE") {
+  } else if (globalUser && globalUser.userRole === "HR_EMPLOYEE") {
     options = [
       {
         title: "Home",
@@ -87,18 +111,25 @@ const NavBar = () => {
       },
     ];
   }
+  
+  //  }
+
+  // useEffect(() =>{
+  // isUserAvailable(option)
+  // },[]);
 
   return (
-    <div>
+    <>
       <MultilevelSidebar
-        open={this.state.isOpen}
-        onToggle={this.handleSidebarToggle}
+        open={isOpen}
+        onToggle={() => setIsOpen(!isOpen)}
         options={options}
-        header="React-MultiLevel-Sidebar"
-        onItemClick={this.handleClick}
+        header="Schedulism"
+        // onItemClick={handleClick}
       />
-      <button onClick={() => this.handleSidebarToggle(true)}>open</button>
-    </div>
+      <button onClick={() => setIsOpen(true)}>open</button>
+      <Outlet />
+    </>
   );
 };
 
