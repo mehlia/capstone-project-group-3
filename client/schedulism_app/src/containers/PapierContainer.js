@@ -58,7 +58,9 @@ const PapierContainer = () => {
             userRole: jsonData.userRole,
             username: jsonData.username,
             shiftRotations: jsonData.shiftRotations
-        })
+        });
+        
+        fetchAllUserShifts(userId);
     
     
 
@@ -67,9 +69,9 @@ const PapierContainer = () => {
 
     useEffect(() => {
         // fetchAllUsers(1);
-        fetchAllUserShifts(1,1);
+        // fetchAllUserShifts(globalUser.id);  //revise this later
         // fetchUserById(1,3);
-    },[])
+    },[globalUser.id])
 
 
     const userRoutes = createBrowserRouter ([
@@ -96,10 +98,12 @@ const PapierContainer = () => {
                 },
 
                 {    
-                    path: "/shifts",
+                    path: "/my-shifts",
                     element: 
                     <ShiftList shifts = {shifts}/>
                 }
+
+            
             ]
         }
     ])

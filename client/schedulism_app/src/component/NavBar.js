@@ -4,10 +4,18 @@ import { Sidebar, Menu, MenuItem } from "react-multilevel-sidebar";
 import { GlobalUserContext } from "../containers/PapierContainer";
 import { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import ShiftList from "./ShiftList";
 
 const NavBar = () => {
   const { globalUser } = useContext(GlobalUserContext) || {};
   const [isOpen, setIsOpen] = useState(false);
+  const [showUserShifts, setShowUserShifts] = useState(false);
+
+//   const handleMyShiftsClick = () => {
+//    setMyShiftsOpen(!myShiftsOpen) 
+// }
+
+
 
   let options = [];
   if (globalUser && globalUser.userRole === "EMPLOYEE") {
@@ -22,7 +30,7 @@ const NavBar = () => {
       },
       {
         title: "My Shifts",
-        content: [{ id: 3, name: "My Shifts", to: "/my-shifts" }],
+        content: [{ id: 3, name: "My Shifts", onClick: () => setShowUserShifts(true),to: "/my-shifts"}],
       },
       {
         title: "Available Shifts",
@@ -49,7 +57,7 @@ const NavBar = () => {
       },
       {
         title: "My Shifts",
-        content: [{ id: 8, name: "My Shifts", to: "/my-shifts" }],
+        content: [{ id: 8, name: "My Shifts", onClick: () => setShowUserShifts(true), to: "/my-shifts"}],
       },
       {
         title: "Available Shifts", //Ensure that some titles are under one catergory
@@ -100,10 +108,14 @@ const NavBar = () => {
         header="Schedulism"
         // onItemClick={handleClick}
       />
+
       <button onClick={() => setIsOpen(true)}>open</button>
-      
+      {showUserShifts && globalUser && (
+        <ShiftList shifts={globalUser.shiftRotations} userId={globalUser.id} />
+      )}
     </>
   );
 };
+
 
 export default NavBar;
