@@ -7,21 +7,25 @@ import UserHome from "../component/UserHome";
 import NavBar from "../component/NavBar";
 import { Outlet } from "react-router-dom";
 
-export const GlobalUserContext = createContext();
+export const GlobalUserContext = createContext({
+    globalUser: {},
+    setGlobalUser:()=>{}
+});
 
 const PapierContainer = () => {
     
     const [users, setUsers] = useState([]);
     const [shifts, setShifts] = useState(null);
     const [userToFind, setUserToFind] = useState(null);
-    const [globalUser, setGlobalUser] = useState([{
+    const [globalUser, setGlobalUser] = useState({
             name: null,
             id: null,
             email: null,
             occupation: null,
             user_role: null,
-            username: null
-        }]);
+            username: null,
+            shiftRotations: []
+        });
 
     const fetchAllUsers = async (requesterId) => {
         const response = await fetch(`http://localhost:8080/users/${requesterId}`);
@@ -50,7 +54,8 @@ const PapierContainer = () => {
             email: jsonData.email,
             occupation: jsonData.occupation,
             user_role: jsonData.user_role,
-            username: jsonData.username
+            username: jsonData.username,
+            shiftRotations: jsonData.shiftRotations
         })
     }
 
@@ -89,7 +94,7 @@ const PapierContainer = () => {
 
     return ( 
     <>
-        <GlobalUserContext.Provider value={{globalUser : globalUser || {}}}> 
+        <GlobalUserContext.Provider value={{globalUser, setGlobalUser}}> 
             <RouterProvider router={userRoutes} />
         </GlobalUserContext.Provider>
     </> 
