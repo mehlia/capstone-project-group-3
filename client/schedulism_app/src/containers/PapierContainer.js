@@ -64,6 +64,32 @@ const PapierContainer = () => {
        fetchAllUsers(userId);
    }
 
+   const deleteUserById = async (userToDelete, requesterId) => {
+    try{
+        if (globalUser.userRole == "EMPLOYEE") {
+            const requesterId = userToDelete;
+        } else {
+            const requesterId = globalUser.id;
+        }
+        const response = await fetch(`https://localhost:8080/users/${requesterId}/${userToDelete}`,
+        {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        }
+        );
+        if (response.status === 204) {
+            alert('Account deleted successfully!');
+            setGlobalUser(null);
+            setShifts([]);
+        } else {
+            console.error('Failed to delete account. Status code:', response.status);
+        }
+    
+    } catch (error) {
+        console.error('Failed to delete account:', error);
+    }
+  };
+
    useEffect(() => {
        // fetchAllUsers(1);
        // fetchAllUserShifts(globalUser.id); //revise this later
@@ -80,9 +106,9 @@ const PapierContainer = () => {
                   <Route path="/user-home" element={<UserHome />} />
                   {/* <Route path="/my-info" element={<UserList users = {users} />} /> */}
                   <Route path="/my-shifts" element={<ShiftList shifts = {shifts} userId={globalUser.id}/>} />
-                  <Route path="/personal-info" element={<User />} />
+                  <Route path="/personal-info" element={<User useDelete={false} useTitle={true}/>} />
                   <Route path="/view-all-employees" element={<UserList users = {users} allUsers = {users} />} />
-                  <Route path="/delete-account" element={<></>} />
+                  <Route path="/delete-account" element={<User useDelete={true} useTitle={false}/>} />
                   <Route path="/" element={<></>} />
                 </Routes>
             </Router>

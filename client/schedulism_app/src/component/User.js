@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GlobalUserContext } from "../containers/PapierContainer";
 
 
-const User = ({user}) => {
+const User = ({user, useDelete, useTitle}) => {
 
   const {globalUser} = useContext(GlobalUserContext);
 
@@ -10,12 +10,15 @@ const User = ({user}) => {
 
     return (
         <div className="user">
-        <h3></h3>
-        <p>Name: {userOne.name}</p>
+        {useTitle ? (
+        <h3>Personal info</h3>
+        ) : null}        <p>Name: {userOne.name}</p>
         <p>Email Address: {userOne.email}</p>
         <p>Username: {userOne.username}</p>
         <p>Occupation: {userOne.occupation}</p>
-        <br/>
+        {useDelete ? (
+        <button type="button">Delete</button>
+        ) : null}
         </div>
       );
 }

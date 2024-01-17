@@ -8,6 +8,8 @@ const UserList = ({users, allUsers}) => {
         return <User
         key = {user.id}
         user = {user}
+        useDelete={true}
+        useTitle={false}
         />
       })
 
