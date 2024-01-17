@@ -1,7 +1,17 @@
-const ShiftList = () => {
+import Shift from "./Shift";
+
+const ShiftList = ({shifts}) => {
+
+    const mappedShifts = shifts.map((shift) =>{
+      return <Shift
+      key = {shift.id}
+      shift = {shift}
+      />
+    }) 
     return ( 
         <>
-        <>This is the shift list</>
+            <h2> Shift list</h2>
+            {mappedShifts}
         </>
      );
 }

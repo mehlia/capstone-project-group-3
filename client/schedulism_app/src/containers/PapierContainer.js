@@ -6,6 +6,9 @@ import { createBrowserRouter, json, RouterProvider } from "react-router-dom";
 import UserHome from "../component/UserHome";
 import NavBar from "../component/NavBar";
 import { Outlet } from "react-router-dom";
+import Shift from "../component/Shift";
+import ShiftList from "../component/ShiftList";
+import User from "../component/User";
 
 export const GlobalUserContext = createContext({
     globalUser: {},
@@ -15,15 +18,15 @@ export const GlobalUserContext = createContext({
 const PapierContainer = () => {
     
     const [users, setUsers] = useState([]);
-    const [shifts, setShifts] = useState(null);
+    const [shifts, setShifts] = useState([]);
     const [userToFind, setUserToFind] = useState(null);
     const [globalUser, setGlobalUser] = useState({
-            name: null,
-            id: null,
-            email: null,
-            occupation: null,
-            userRole: null,
-            username: null,
+            name: "",
+            id: 0,
+            email: "",
+            occupation: "",
+            userRole: "",
+            username: "",
             shiftRotations: []
         });
 
@@ -39,8 +42,8 @@ const PapierContainer = () => {
         setUserToFind(jsonData);
     }
 
-    const fetchAllUserShifts = async (shiftRotationId, requesterId) => {
-        const response = await fetch(`http://localhost:8080/shift-rotations/${shiftRotationId}/users/${requesterId}`);
+    const fetchAllUserShifts = async (userId) => {
+        const response = await fetch(`http://localhost:8080/users/${userId}/shift-rotations`);
         const jsonData = await response.json();
         setShifts(jsonData);
     }
@@ -56,15 +59,16 @@ const PapierContainer = () => {
             userRole: jsonData.userRole,
             username: jsonData.username,
             shiftRotations: jsonData.shiftRotations
-        })
+        });
+        
+        fetchAllUserShifts(userId);
     }
 
     useEffect(() => {
         // fetchAllUsers(1);
-        // fetchAllUserShifts(1,1);
+        // fetchAllUserShifts(globalUser.id);  //revise this later
         // fetchUserById(1,3);
-    },[])
-
+    },[globalUser.id])
 
     const userRoutes = createBrowserRouter ([
         {
@@ -87,6 +91,18 @@ const PapierContainer = () => {
                     path: "/user-home",
                     element: 
                     <UserHome />
+                },
+
+                {    
+                    path: "/my-info",
+                    element: 
+                    <UserList users = {users} />
+                },
+
+                {    
+                    path: "/my-shifts",
+                    element: 
+                    <ShiftList shifts = {shifts} userId={globalUser.id}/>
                 }
             ]
         }
@@ -97,7 +113,6 @@ const PapierContainer = () => {
         <GlobalUserContext.Provider value={{globalUser, setGlobalUser}}> 
             <RouterProvider router={userRoutes} />
         </GlobalUserContext.Provider>
-        <NavBar/>
     </> 
     );
 }

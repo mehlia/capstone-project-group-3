@@ -1,14 +1,32 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect,useState } from "react";
 import { Outlet } from "react-router";
 import { GlobalUserContext } from "../containers/PapierContainer";
+import ShiftList from "./ShiftList";
 
 const UserHome = () => {
 
-    const {globalUser} = useContext(GlobalUserContext) || {};
+    const {globalUser} = useContext(GlobalUserContext);
+    const [userDetails, setUserDetails] = useState([]);
+    const [shifts, setShifts] = useState([{
+        approved: false,
+        createdBy: 0,
+        date: "",
+        hasBeenRequested: false,
+        id: 0,
+        shiftType: {}
+    }]);
 
     const getUserShifts = async () => {
         if(globalUser.id){
-            const shifts = globalUser.shiftRotations;
+            setShifts(globalUser.shiftRotations);
+            setUserDetails([
+                globalUser.name, 
+                globalUser.email,
+                globalUser.occupation,
+                globalUser.userRole,
+                globalUser.username,
+                globalUser.shiftRotations
+            ])
             console.log(shifts);
         }
     }
@@ -22,6 +40,13 @@ const UserHome = () => {
     return ( 
         <>
             <h1> This is the user home   </h1>
+            <ul>
+                <li>{userDetails[1]}</li> 
+                <li>{userDetails[2]}</li> 
+                <li>{userDetails[3]}</li> 
+                <li>{userDetails[4]}</li> 
+            </ul>
+            <ShiftList shifts={shifts} userId={globalUser.id}/>
             <Outlet/>
         </>
     );
