@@ -67,15 +67,15 @@ const PapierContainer = () => {
    const deleteUserById = async (userToDelete, requesterId) => {
     try{
         if (globalUser.userRole == "EMPLOYEE") {
-            const requesterId = userToDelete;
+            requesterId = userToDelete;
         } else {
-            const requesterId = globalUser.id;
+            requesterId = globalUser.id;
         }
         console.log(requesterId,userToDelete);
-        const response = await fetch(`https://localhost:8080/users/${requesterId}/${userToDelete}`,
+        const response = await fetch(`http://localhost:8080/users/${requesterId}/${userToDelete}`,
         {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" }
         }
         );
         console.log("after delete msg")
