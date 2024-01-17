@@ -8,13 +8,13 @@ const UserHome = () => {
     const {globalUser} = useContext(GlobalUserContext);
     const [userDetails, setUserDetails] = useState([]);
     const [shifts, setShifts] = useState([{
-        date: null,
-        approved_by_id: null,
-        created_by_id: null,
-        id: null,
-        requested_by_id: null,
-        shift_type_id: null,
-        user_id: null
+        date: "",
+        approved_by_id: 0,
+        created_by_id: 0,
+        id: 0,
+        requested_by_id: 0,
+        shift_type_id: 0,
+        user_id: 0
     }]);
 
     const getUserShifts = async () => {

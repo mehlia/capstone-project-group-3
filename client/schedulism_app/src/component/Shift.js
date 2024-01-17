@@ -6,12 +6,12 @@ const Shift = ({shift}) => {
 
     return ( 
     <div className="shift">
-    <h3>Test Shifts</h3>
-    <p>date:{shift.date}</p>
-    <p>Type of Shift:{shift.id}</p>
-    {/* <p>Start Time: {shift.shiftType.id}</p>   */}
-    
-    {/* <p>End Time: {shift.shiftType.endTime}</p> */}
+        <h3>Test Shifts</h3>
+        <p>date:{shift.date}</p>
+        <p>Type of Shift:{shift.id}</p>
+        {/* <p>Start Time: {shift.shiftType.startTime ""}</p>   */}
+        
+        {/* <p>End Time: {shift.shiftType.endTime}</p> */}
     </div> );
     // <Outlet/>
 }

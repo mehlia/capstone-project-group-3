@@ -20,12 +20,12 @@ const PapierContainer = () => {
     const [shifts, setShifts] = useState([]);
     const [userToFind, setUserToFind] = useState(null);
     const [globalUser, setGlobalUser] = useState({
-            name: null,
-            id: null,
-            email: null,
-            occupation: null,
-            userRole: null,
-            username: null,
+            name: "",
+            id: 0,
+            email: "",
+            occupation: "",
+            userRole: "",
+            username: "",
             shiftRotations: []
         });
 

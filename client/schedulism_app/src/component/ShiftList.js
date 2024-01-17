@@ -10,8 +10,8 @@ const ShiftList = ({shifts, userId}) => {
     }) 
     return ( 
         <>
-        <h2> Shift list</h2>
-         {mappedShifts}
+            <h2> Shift list</h2>
+            {mappedShifts}
         </>
      );
 }
