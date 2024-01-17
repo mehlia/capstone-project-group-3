@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
+
 const LogInForm = ({updateGlobalUser}) => {
 
     const navigate = useNavigate();
@@ -62,6 +63,7 @@ const LogInForm = ({updateGlobalUser}) => {
         <Outlet />
         <section className="login-title">
             <h1>This is the login form</h1>
+
         </section>
         <div className="form-container" >
             <form className="username-form" onSubmit={(event) => handleFormSubmit(event)}>

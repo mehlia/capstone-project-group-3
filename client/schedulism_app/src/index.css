@@ -11,3 +11,58 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* CSS for app */
+/* H1 log in  */
+h1 {
+  font-size: 50px;
+  color: blue;
+  text-align: center;
+}
+
+/* login form */
+.login-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: #F8F8F8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  margin-top: 20px;
+}
+.username-form {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+login-input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.submit {
+    margin-top: 50px;
+    width: 100%;
+    background-color: #87A96B;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.submit:hover {
+  background-color: #8F9779;
+}
