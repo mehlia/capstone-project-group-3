@@ -8,6 +8,7 @@ import NavBar from "../component/NavBar";
 import { Outlet } from "react-router-dom";
 import Shift from "../component/Shift";
 import ShiftList from "../component/ShiftList";
+import User from "../component/User";
 
 export const GlobalUserContext = createContext({
     globalUser: {},
@@ -61,10 +62,6 @@ const PapierContainer = () => {
         });
         
         fetchAllUserShifts(userId);
-    
-    
-
-
     }
 
     useEffect(() => {
@@ -72,7 +69,6 @@ const PapierContainer = () => {
         // fetchAllUserShifts(globalUser.id);  //revise this later
         // fetchUserById(1,3);
     },[globalUser.id])
-
 
     const userRoutes = createBrowserRouter ([
         {
@@ -98,12 +94,16 @@ const PapierContainer = () => {
                 },
 
                 {    
+                    path: "/my-info",
+                    element: 
+                    <UserList users = {users} />
+                },
+
+                {    
                     path: "/my-shifts",
                     element: 
                     <ShiftList shifts = {shifts}/>
                 }
-
-            
             ]
         }
     ])
