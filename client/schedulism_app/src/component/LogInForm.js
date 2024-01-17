@@ -18,6 +18,8 @@ const LogInForm = ({updateGlobalUser}) => {
                 
                 updateGlobalUser(inputPassword)
                 navigate("/user-home");
+            } else {
+                throw new Error("Invalid password entered.") // skips to below error catching
             }
 
         } catch (error) {
