@@ -1,6 +1,6 @@
 import Shift from "./Shift";
 
-const ShiftList = ({shifts, userId}) => {
+const ShiftList = ({shifts}) => {
 
     const mappedShifts = shifts.map((shift) =>{
       return <Shift
