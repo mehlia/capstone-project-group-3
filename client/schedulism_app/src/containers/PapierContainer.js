@@ -100,7 +100,7 @@ const PapierContainer = () => {
                 {    
                     path: "/my-shifts",
                     element: 
-                    <ShiftList shifts = {shifts}/>
+                    <ShiftList shifts = {shifts} userId={globalUser.id}/>
                 }
 
             

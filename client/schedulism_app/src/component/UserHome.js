@@ -8,13 +8,12 @@ const UserHome = () => {
     const {globalUser} = useContext(GlobalUserContext);
     const [userDetails, setUserDetails] = useState([]);
     const [shifts, setShifts] = useState([{
+        approved: false,
+        createdBy: 0,
         date: "",
-        approved_by_id: 0,
-        created_by_id: 0,
+        hasBeenRequested: false,
         id: 0,
-        requested_by_id: 0,
-        shift_type_id: 0,
-        user_id: 0
+        shiftType: {}
     }]);
 
     const getUserShifts = async () => {
@@ -41,6 +40,12 @@ const UserHome = () => {
     return ( 
         <>
             <h1> This is the user home   </h1>
+            <ul>
+                <li>{userDetails[1]}</li> 
+                <li>{userDetails[2]}</li> 
+                <li>{userDetails[3]}</li> 
+                <li>{userDetails[4]}</li> 
+            </ul>
             <ShiftList shifts={shifts} userId={globalUser.id}/>
             <Outlet/>
         </>
