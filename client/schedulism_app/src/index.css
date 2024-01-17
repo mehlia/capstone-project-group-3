@@ -20,11 +20,17 @@ h1 {
   text-align: center;
 }
 
+/* images of the logos */
 .big-logo {
   width: 100%;
   
 }
 
+.small-logo {
+  width: 2.5%
+}
+
+/* main body */
 body{
   background-color: #A3C1AD;
 }
@@ -34,7 +40,7 @@ body{
 .login-form {
   max-width: 400px;
   margin: auto;
-  padding: 20px;
+  padding: 25px;
   background-color: rgba(248, 248, 248, 0.3);
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -43,7 +49,7 @@ body{
 }
 
 .form-container {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .username-form {
@@ -88,10 +94,10 @@ body{
 
 /* nav bar */
 .nav {
-  background-color: #f4f4f4;
-  padding: 20px;
+  background-color: #66CDAA;
+  padding: 10px;
   position: sticky;
-  top: 10px;
+  
 }
 
 .nav ul{
@@ -101,15 +107,19 @@ body{
 }
 
 .nav li{
-  width: 25%;
+  width: 20%;
   display: inline-block;
-  font-size: 24px;
+  font-size: 15px;
 }
 
 /* .nav li a{
   text-decoration: none;
   color: #4b4b4b;
 } */
+
+
+/* User Home */
+
 
 
 

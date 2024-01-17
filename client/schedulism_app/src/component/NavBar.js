@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GlobalUserContext } from "../containers/PapierContainer";
+import smallLogo from "../assets/smallLogo.png";
 
 const NavBar = () => {
  const { globalUser } = useContext(GlobalUserContext);
@@ -44,6 +45,7 @@ const NavBar = () => {
 
  return (
    <nav className="nav">
+    <img className="small-logo" src={smallLogo} alt="schedulism mini-logo" />
      <ul>
        {globalUser.userRole === "HR_EMPLOYEE" ? renderHRNav() : renderRegularNav()}
      </ul>
