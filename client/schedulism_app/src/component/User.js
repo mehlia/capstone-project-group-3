@@ -10,11 +10,12 @@ const User = ({user}) => {
 
     return (
         <div className="user">
-        <h3>My Personal Information</h3>
+        <h3></h3>
         <p>Name: {userOne.name}</p>
         <p>Email Address: {userOne.email}</p>
         <p>Username: {userOne.username}</p>
         <p>Occupation: {userOne.occupation}</p>
+        <br/>
         </div>
       );
 }
