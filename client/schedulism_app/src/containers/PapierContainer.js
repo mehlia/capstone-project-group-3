@@ -32,7 +32,7 @@ const PapierContainer = () => {
    const fetchAllUsers = async (requesterId) => {
        const response = await fetch(`http://localhost:8080/users/${requesterId}`);
        const jsonData = await response.json();
-       setUsers([...jsonData]);
+       setUsers(jsonData);
    }
 
    const fetchUserById = async (requesterId, idToFind) => {
@@ -61,6 +61,7 @@ const PapierContainer = () => {
        });
        
        fetchAllUserShifts(userId);
+       fetchAllUsers(userId);
    }
 
    useEffect(() => {
@@ -77,10 +78,10 @@ const PapierContainer = () => {
                 <Routes>
                   <Route path="/" element={<LogInForm updateGlobalUser={updateGlobalUser}/>} />
                   <Route path="/user-home" element={<UserHome />} />
-                  <Route path="/my-info" element={<UserList users = {users} />} />
+                  {/* <Route path="/my-info" element={<UserList users = {users} />} /> */}
                   <Route path="/my-shifts" element={<ShiftList shifts = {shifts} userId={globalUser.id}/>} />
                   <Route path="/personal-info" element={<User />} />
-                  <Route path="/view-all-employees" element={<UserList users = {users} />} />
+                  <Route path="/view-all-employees" element={<UserList users = {users} allUsers = {users} />} />
                   <Route path="/delete-account" element={<></>} />
                   <Route path="/" element={<></>} />
                 </Routes>

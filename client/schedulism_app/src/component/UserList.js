@@ -1,6 +1,8 @@
 import User from "./User";
 
-const UserList = ({users}) => {
+const UserList = ({users, allUsers}) => {
+
+    console.log(users, allUsers);
 
     const mappedUsers = users.map((user) =>{
         return <User
@@ -11,7 +13,7 @@ const UserList = ({users}) => {
 
     return (
         <>
-        <h2>UserList</h2>
+        <h2>All Employees</h2>
         {mappedUsers} 
         </>
     );
