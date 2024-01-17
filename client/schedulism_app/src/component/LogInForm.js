@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import bigLogo from "../assets/bigLogo.png";
 
 
 const LogInForm = ({updateGlobalUser}) => {
@@ -62,27 +63,28 @@ const LogInForm = ({updateGlobalUser}) => {
     <section className="login-form">
         <Outlet />
         <section className="login-title">
-            <h1>This is the login form</h1>
+            <h1>Welcome</h1>
+            <img className="big-logo" src={bigLogo} alt="schedulism logo" />
 
         </section>
         <div className="form-container" >
             <form className="username-form" onSubmit={(event) => handleFormSubmit(event)}>
-                <label htmlFor="inputName">UserName: </label>
+                <label htmlFor="inputName"></label>
                 <input 
                     type="text" 
                     className="login-input"
                     onInput={(event) => newUserName(event)}
-                    placeholder="insert username"
+                    placeholder="username"
                     value={inputName}
                     id = "inputName"
                 />
 
-                <label htmlFor="inputPassword">Password: </label>
+                <label htmlFor="inputPassword"></label>
                 <input 
                     type="password" 
                     className="login-input"
                     onInput={(event) => newUserPassword(event)}
-                    placeholder="insert password"
+                    placeholder="password"
                     value={inputPassword}
                     id = "inputPassword"
                 />
