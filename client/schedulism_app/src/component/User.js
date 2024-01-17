@@ -2,11 +2,15 @@ import { useContext } from "react";
 import { GlobalUserContext } from "../containers/PapierContainer";
 
 
-const User = ({user, useDelete, useTitle}) => {
+const User = ({user, useDelete, useTitle, deleteUserById}) => {
 
   const {globalUser} = useContext(GlobalUserContext);
 
   const userOne = user ? user : globalUser;
+
+  const handleDeleteButton = () => {
+    deleteUserById(userOne.id,userOne.id);
+  }
 
     return (
         <div className="user">
@@ -17,7 +21,7 @@ const User = ({user, useDelete, useTitle}) => {
         <p>Username: {userOne.username}</p>
         <p>Occupation: {userOne.occupation}</p>
         {useDelete ? (
-        <button type="button">Delete</button>
+        <button onClick={handleDeleteButton} >Delete</button>
         ) : null}
         </div>
       );

@@ -1,8 +1,7 @@
 import User from "./User";
 
-const UserList = ({users, allUsers}) => {
+const UserList = ({users, allUsers, deleteUserById}) => {
 
-    console.log(users, allUsers);
 
     const mappedUsers = users.map((user) =>{
         return <User
@@ -10,6 +9,7 @@ const UserList = ({users, allUsers}) => {
         user = {user}
         useDelete={true}
         useTitle={false}
+        deleteUserById={deleteUserById}
         />
       })
 

@@ -71,13 +71,16 @@ const PapierContainer = () => {
         } else {
             const requesterId = globalUser.id;
         }
+        console.log(requesterId,userToDelete);
         const response = await fetch(`https://localhost:8080/users/${requesterId}/${userToDelete}`,
         {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         }
         );
+        console.log("after delete msg")
         if (response.status === 204) {
+            console.log("after if statement")
             alert('Account deleted successfully!');
             setGlobalUser(null);
             setShifts([]);
@@ -106,9 +109,9 @@ const PapierContainer = () => {
                   <Route path="/user-home" element={<UserHome />} />
                   {/* <Route path="/my-info" element={<UserList users = {users} />} /> */}
                   <Route path="/my-shifts" element={<ShiftList shifts = {shifts} userId={globalUser.id}/>} />
-                  <Route path="/personal-info" element={<User useDelete={false} useTitle={true}/>} />
-                  <Route path="/view-all-employees" element={<UserList users = {users} allUsers = {users} />} />
-                  <Route path="/delete-account" element={<User useDelete={true} useTitle={false}/>} />
+                  <Route path="/personal-info" element={<User useDelete={false} useTitle={true} />} />
+                  <Route path="/view-all-employees" element={<UserList users = {users} allUsers = {users} deleteUserById={deleteUserById} />} />
+                  <Route path="/delete-account" element={<User useDelete={true} useTitle={false} deleteUserById={deleteUserById}/>} />
                   <Route path="/" element={<></>} />
                 </Routes>
             </Router>

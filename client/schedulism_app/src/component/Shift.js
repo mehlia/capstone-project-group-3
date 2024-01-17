@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 
 const Shift = ({shift}) => {
     
-    console.log("Log in Shift.js", shift);  
 
     return ( 
     <div className="shift">
