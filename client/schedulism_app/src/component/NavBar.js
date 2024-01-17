@@ -43,7 +43,7 @@ const NavBar = () => {
  );
 
  return (
-   <nav>
+   <nav className="nav">
      <ul>
        {globalUser.userRole === "HR_EMPLOYEE" ? renderHRNav() : renderRegularNav()}
      </ul>

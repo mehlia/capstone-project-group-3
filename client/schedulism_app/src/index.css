@@ -22,6 +22,7 @@ h1 {
 
 .big-logo {
   width: 100%;
+  
 }
 
 body{
@@ -39,7 +40,6 @@ body{
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-
 }
 
 .form-container {
@@ -75,7 +75,6 @@ body{
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-
 }
 
 .submit:hover {
@@ -86,3 +85,36 @@ body{
   box-shadow: #002244 2px 2px 0 0;
   transform: translate(4px, 4px);
 }
+
+/* nav bar */
+.nav {
+  background-color: #f4f4f4;
+  padding: 20px;
+  position: sticky;
+  top: 10px;
+}
+
+.nav ul{
+  white-space: nowrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav li{
+  width: 25%;
+  display: inline-block;
+  font-size: 24px;
+}
+
+/* .nav li a{
+  text-decoration: none;
+  color: #4b4b4b;
+} */
+
+
+
+
+
+
+
+
