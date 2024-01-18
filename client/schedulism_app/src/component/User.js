@@ -1,15 +1,19 @@
 import { useContext } from "react";
 import { GlobalUserContext } from "../containers/PapierContainer";
+import { useNavigate } from "react-router-dom";
 
 
 const User = ({user, useDelete, useTitle, deleteUserById}) => {
 
   const {globalUser} = useContext(GlobalUserContext);
 
+  const navigate = useNavigate();
+
   const userOne = user ? user : globalUser;
 
   const handleDeleteButton = () => {
-    deleteUserById(userOne.id,userOne.id);
+    deleteUserById(globalUser.id,userOne.id);
+    navigate("/user-home");
   }
 
     return (
