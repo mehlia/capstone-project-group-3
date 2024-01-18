@@ -1,11 +1,22 @@
 import User from "./User";
 
-const UserList = () => {
+const UserList = ({users, allUsers, deleteUserById}) => {
+
+
+    const mappedUsers = users.map((user) =>{
+        return <User
+        key = {user.id}
+        user = {user}
+        useDelete={true}
+        useTitle={false}
+        deleteUserById={deleteUserById}
+        />
+      })
+
     return (
         <>
-        <h1>This is the user list</h1>
-
-        <User /> 
+        <h2>All Employees</h2>
+        {mappedUsers} 
         </>
     );
 }

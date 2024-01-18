@@ -11,3 +11,156 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* CSS for app */
+/* H1 log in  */
+h1 {
+  font-size: 50px;
+  color: blue;
+  text-align: center;
+}
+
+/* images of the logos */
+.big-logo {
+  width: 100%;
+  
+}
+
+.small-logo {
+  width: 5%
+}
+
+/* main body */
+body{
+  background-color: #A3C1AD;
+}
+
+
+/* login form */
+.login-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 25px;
+  background-color: rgba(248, 248, 248, 0.3);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.form-container {
+  margin-top: 25px;
+}
+
+.username-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.login-input {
+  display: block;
+  height: 50px;
+  width: 95%;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 300;
+  color: black;
+}
+
+.submit {
+    margin-top: 50px;
+    width: 100%;
+    background-color: #00BFFF;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #4B9CD3;
+}
+
+.submit:active {
+  box-shadow: #002244 2px 2px 0 0;
+  transform: translate(4px, 4px);
+}
+
+/* nav bar */
+.nav {
+  background-color: #5b6b69;
+  padding: 10px;
+  position: sticky;
+  
+}
+/* Hello */
+.nav ul{
+  white-space: nowrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav li{
+  width: 20%;
+  display: inline-block;
+  font-size: 15px;
+}
+
+/* .nav li a{
+  text-decoration: none;
+  color: #4b4b4b;
+} */
+
+
+/* User Home */
+.user-details, .shift-details{
+  display: inline-block ;
+  width: 48%;
+  border-radius: 5px;
+}
+
+.user-details {
+    align-items: center;
+    padding: 5vw;
+    flex-wrap: nowrap;
+    background-color: rgba(248, 248, 248, 0.3);
+    border: 1vw solid #ccc;
+    margin: 10vw;
+}
+
+.shift-details{
+    align-items: center;
+    background-color: rgba(248, 248, 248, 0.3);
+    margin: 10vw; 
+    padding: 10vw; 
+}
+
+.parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-list-home {
+  list-style: none;
+  font-weight: bold;
+
+}
+
+.user-list-home li{
+  margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+
