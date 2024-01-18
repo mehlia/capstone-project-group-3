@@ -101,6 +101,9 @@ An Employee management system application, where the main function is to track a
 
 ### RESTful Routes:
 
+![Screenshot 2024-01-16 at 12 06 14](https://github.com/mehlia/capstone-project-group-3/assets/131881583/2b2328fe-25d7-4218-b0bb-07a1322f51c8)
+
+
 #### Users
 
 1. **GET** All Users: `localhost:8080/users/1`
