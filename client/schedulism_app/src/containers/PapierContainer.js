@@ -76,6 +76,7 @@ const PapierContainer = () => {
       if (response.status === 204) {
         alert("Account deleted successfully!");
         setUserToFind(null);
+        fetchAllUsers(requesterId);
       } else {
         console.error(
           "Failed to delete account. Status code:",
