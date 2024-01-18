@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const User = ({user, useDelete, useTitle, deleteUserById}) => {
 
-  const {globalUser} = useContext(GlobalUserContext);
+  let {globalUser} = useContext(GlobalUserContext);
 
   const navigate = useNavigate();
 
@@ -13,7 +13,22 @@ const User = ({user, useDelete, useTitle, deleteUserById}) => {
 
   const handleDeleteButton = () => {
     deleteUserById(globalUser.id,userOne.id);
-    navigate("/user-home");
+
+    if(userOne.id === globalUser.id){
+      navigate("/")
+      globalUser = {
+        name: "",
+        id: 0,
+        email: "",
+        occupation: "",
+        userRole: "",
+        username: "",
+        shiftRotations: [],
+      }
+    } else {
+     navigate("/user-home");
+    }
+  
   }
 
     return (

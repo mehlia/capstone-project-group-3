@@ -1,18 +1,13 @@
-import { useState, useEffect, createContext } from "react";
+import { useState,createContext } from "react";
 import UserList from "../component/UserList";
-import NewUserForm from "../component/NewUserForm";
 import LogInForm from "../component/LogInForm";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UserHome from "../component/UserHome";
 import NavBar from "../component/NavBar";
-import Shift from "../component/Shift";
 import ShiftList from "../component/ShiftList";
 import User from "../component/User";
 
-export const GlobalUserContext = createContext({
-  //    globalUser: {},
-  //    setGlobalUser:()=>{}
-});
+export const GlobalUserContext = createContext({});
 
 const PapierContainer = () => {
   const [users, setUsers] = useState([]);
@@ -71,11 +66,6 @@ const PapierContainer = () => {
 
   const deleteUserById = async (requesterId, userToFind) => {
     try {
-      // if (globalUser.userRole == "EMPLOYEE") {
-      //     requesterId = userToDelete;
-      // } else {
-      //     requesterId = globalUser.id;
-      // }
       const response = await fetch(
         `http://localhost:8080/users/${requesterId}/${userToFind}`,
         {
@@ -85,9 +75,7 @@ const PapierContainer = () => {
       );
       if (response.status === 204) {
         alert("Account deleted successfully!");
-        // setGlobalUser(null);
         setUserToFind(null);
-        setShifts([]);
       } else {
         console.error(
           "Failed to delete account. Status code:",
@@ -98,12 +86,6 @@ const PapierContainer = () => {
       console.error("Failed to delete account:", error);
     }
   };
-
-  useEffect(() => {
-    // fetchAllUsers(1);
-    // fetchAllUserShifts(globalUser.id); //revise this later
-    // fetchUserById(1,3);
-  }, []);
 
   return (
     <>
@@ -116,7 +98,6 @@ const PapierContainer = () => {
               element={<LogInForm updateGlobalUser={updateGlobalUser} />}
             />
             <Route path="/user-home" element={<UserHome />} />
-            {/* <Route path="/my-info" element={<UserList users = {users} />} /> */}
             <Route
               path="/my-shifts"
               element={<ShiftList shifts={shifts} userId={globalUser.id} />}
