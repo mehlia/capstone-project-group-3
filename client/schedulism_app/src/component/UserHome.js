@@ -2,6 +2,7 @@ import { useContext, useEffect,useState } from "react";
 import { Outlet } from "react-router";
 import { GlobalUserContext } from "../containers/PapierContainer";
 import ShiftList from "./ShiftList";
+import ShiftListHome from "./ShiftListHome";
 
 const UserHome = () => {
 
@@ -51,7 +52,7 @@ const UserHome = () => {
                     </section>
 
             <div className="shift-details container">
-                <ShiftList shifts={shifts} userId={globalUser.id}/>
+                <ShiftListHome shifts={shifts} userId={globalUser.id}/>
             </div>
             </div>
             
