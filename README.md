@@ -11,14 +11,23 @@ An Employee management system application, where the main function is to track a
 * **Rayster Ramos**
 
 ## Project Aims:
+
+**The Challenge:** Rainforest Retail have difficulty managing their employee details & schedules, recently transitioning from tedious paperwork to a flashy website.
+
+**The Solution:** Madame Papier will create an efficient HR scheduling system: Schedulism to tackle this challenge Rainforest Retail have been facing. This will improve employee schedules & requests as well as provide a much more seamless system for the team.
+
 ### For Users:
-
-User Personas
-
-![Screenshot 2024-01-16 at 12 08 53](https://github.com/mehlia/capstone-project-group-3/assets/131881583/472bfcd1-aa53-469f-b56f-1fced9e939e1)
+* Implement an electronic calendar system for employees to view & request shifts.
+* Provide extensive & comprehensive training to all staff for the app functionalities before the launch of the system.
+* Create a responsive, mobile-friendly design.
+* Comply with security regulations & protocols to protect confidential employee data.
+* Allow separate access controls to employees & HR employees.
 
 
 ### For Developers:
+* Create a scalable system with reusable & robust functionalities for future development.
+* Clear, concise & well formatted code.
+
 
 ### Libraries Used:
 * Spring Boot Starter Data JPA
@@ -27,10 +36,7 @@ User Personas
 * PostgreSQL
 
 ## MVP
-
-MSCW Diagram
-
-![Screenshot 2024-01-16 at 12 15 54](https://github.com/mehlia/capstone-project-group-3/assets/131881583/4fae84d7-7b49-4062-bece-56c2f0050f46)
+MSCW Diagram -->
 
 ## Extensions
 
@@ -38,11 +44,7 @@ MSCW Diagram
 
 ### UML Class Diagram:
 
-![Screenshot 2024-01-16 at 12 05 21](https://github.com/mehlia/capstone-project-group-3/assets/131881583/b09655da-b2fe-449e-98a6-93f6e00f845b)
-
 ### ERD Diagram:
-
-![Screenshot 2024-01-16 at 12 04 48](https://github.com/mehlia/capstone-project-group-3/assets/131881583/5ee24798-3f4a-46c7-878d-beab003e2338)
 
 ### RESTful Routes:
 
@@ -72,13 +74,106 @@ MSCW Diagram
 
 **JSON RESPONSE**
 
+`{
+    "id": 9,
+    "name": "Prickle",
+    "email": "prickle@mail.com",
+    "username": "PrickleRF",
+    "occupation": "Truck Driver",
+    "userRole": "EMPLOYEE",
+    "shiftRotations": null
+}`
+
 
 #### Shifts
 
-**GET** 
+**GET** Get All Shifts of Specific User: `localhost:8080/users/2/shift-rotations`
 
 **JSON RESPONSE**
 
+`[
+    {
+        "id": 4,
+        "date": "2023-01-01",
+        "createdBy": null,
+        "user": {
+            "id": 2,
+            "name": "Janet",
+            "email": "janet@mail.com",
+            "username": "JanetRF",
+            "occupation": "Sales Assistant",
+            "userRole": "EMPLOYEE"
+        },
+        "shiftType": {
+            "id": 1,
+            "shiftSlot": "MORNING",
+            "startTime": "08:00:00",
+            "endTime": "14:00:00"
+        },
+        "hasBeenRequested": false,
+        "approved": false
+    },
+    {
+        "id": 5,
+        "date": "2023-01-02",
+        "createdBy": null,
+        "user": {
+            "id": 2,
+            "name": "Janet",
+            "email": "janet@mail.com",
+            "username": "JanetRF",
+            "occupation": "Sales Assistant",
+            "userRole": "EMPLOYEE"
+        },
+        "shiftType": {
+            "id": 3,
+            "shiftSlot": "EVENING",
+            "startTime": "16:00:00",
+            "endTime": "22:00:00"
+        },
+        "hasBeenRequested": false,
+        "approved": false
+    },
+    {
+        "id": 6,
+        "date": "2023-01-04",
+        "createdBy": null,
+        "user": {
+            "id": 2,
+            "name": "Janet",
+            "email": "janet@mail.com",
+            "username": "JanetRF",
+            "occupation": "Sales Assistant",
+            "userRole": "EMPLOYEE"
+        },
+        "shiftType": {
+            "id": 2,
+            "shiftSlot": "AFTERNOON",
+            "startTime": "12:00:00",
+            "endTime": "18:00:00"
+        },
+        "hasBeenRequested": false,
+        "approved": false
+    }
+]`
+
+**POST** Create New Shift Rotation: `localhost:8080/shift-rotations/createShift/4`
+
+**JSON RESPONSE**
+
+`{
+   "date": "2024-01-15",
+   "shiftType": {
+       "id": 1,
+       "shiftSlot": "MORNING",
+       "startTime": "09:00:00",
+       "endTime": "17:00:00"
+   }
+}`
+
+**POST** Add User to Shift Rotation: `localhost:8080/shift-rotations/addUserToShift?shiftRotationId=7&hrEmployeeId=1&userToAddId=2`
+
+**Request Params**
 
 ### GET Mapping
 
@@ -93,11 +188,7 @@ MSCW Diagram
 
 ### Wireframe:
 
-
-
 ### Props Diagram:
-
-![Screenshot 2024-01-16 at 12 14 16](https://github.com/mehlia/capstone-project-group-3/assets/131881583/794e0537-f6aa-4b8c-b57d-226235fe84fe)
 
 
 
