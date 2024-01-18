@@ -23,26 +23,27 @@ const ShiftList = ({ shifts }) => {
   //   };
   // };
 
-  const parseTimeStringToDate = (timeString) => {
-    console.log(timeString)
+  const parseTimeStringToDate = (timeString, timeDate) => {
+    console.log(timeDate);
     const [hours, minutes, seconds] = timeString.split(':');
-    const currentDate = new Date();
-    console.log(hours,minutes,seconds)
+    const [year, month, day] = timeDate.split('-');
+    console.log(year,month,day)
+    const currentDate = new Date(Number(year),Number(month)-1,Number(day)); // Not actually sure why we need to do -1 on the month but we do
     currentDate.setHours(Number(hours));
     currentDate.setMinutes(Number(minutes));
     currentDate.setSeconds(Number(seconds));
-    console.log(currentDate)
     return currentDate;
   };
 
   const events = shifts.map((shift) => (
-    
     {
     id: shift.id,
     title: `${shift.shiftType.shiftSlot} : ${formatShiftTime(shift.shiftType.startTime)} - ${formatShiftTime(shift.shiftType.endTime)}`,
-    start: parseTimeStringToDate(shift.shiftType.startTime),
-    end: parseTimeStringToDate(shift.shiftType.endTime),
+    start: parseTimeStringToDate(shift.shiftType.startTime, shift.date),
+    end: parseTimeStringToDate(shift.shiftType.endTime, shift.date)
     }));
+  
+    console.log(events);
 
   const handleEventClick = (event) => {
     setSelectedShift(event);
