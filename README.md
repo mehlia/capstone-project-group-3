@@ -4,11 +4,11 @@
 An Employee management system application, where the main function is to track an employee’s details & work schedule with additional options to request/approve shifts depending on their employee type e.g. Employee or HR Employee.
 
 ### The Fullstack Team:
-* **Janet Mensah**
-* **Mehlia Rahman**
-* **Annie Wilson**
-* **Kacper Nowak**
-* **Rayster Ramos**
+* [**Janet Mensah**](https://github.com/JMen121)
+* [**Mehlia Rahman**](https://github.com/mehlia)
+* [**Annie Wilson**](https://github.com/anniewils97)
+* [**Kacper Nowak**](https://github.com/KacperProg)
+* [**Rayster Ramos**](https://github.com/rjrfrst)
 
 ## Project Aims
 
@@ -38,14 +38,16 @@ user personas ===>
 
 ### Business Case & Risk Register:
 
+* [Business Case](https://github.com/mehlia/capstone-project-group-3/blob/main/business_case.pdf)
+* [Risk Register](https://github.com/mehlia/capstone-project-group-3/blob/main/risk_register.pdf)
 
-### Step-By-Step Setup Instructions:
+### Step-By-Step Setup Instructions (Client & Server):
 1. Clone from GitHub Repository: `https://github.com/mehlia/capstone-project-group-3`
 2. Open up server/schedulism in IntelliJ (or IDE of choice) for Backend code.
 3. Check for correct dependencies in pom.xml file.
 4. Create a PostgreSQL database in the terminal: `createdb madame_papier_db`
 5. Run Schedulism.java application.
-6. Test mapping routes in server of choice (e.g Postman) & check database (e.g. Postico) -> Click here to download our pre-mapped Postman collection to test routes.
+6. Test mapping routes in server of choice (e.g Postman) & check database (e.g. Postico) -> [**Click here**](https://api.postman.com/collections/30010982-4383e7cd-b0c5-4575-b1f1-ed9ab8d4724a?access_key=PMAT-01HKYKERZ05RCA3MNBN9FCF599) to download our pre-mapped Postman collection to test routes.
 7. Open up client/schedulism_app in VS Code for Frontend code.
 8. Install all the correct libraries in terminal needed to run all functionalities: `npm i` 
 `npm install dayjs`
@@ -67,10 +69,10 @@ user personas ===>
 
 * React 18.2.0
 * React-router-dom 6.20.1
-* Material UI 5.15.0
-* mui/x-date-pickers
-* mui/styled-engine-sc
-* day.js
+* [mui/material](https://www.npmjs.com/package/@mui/material)
+* [mui/x-date-pickers](https://www.npmjs.com/package/@mui/x-date-pickers)
+* [mui/styled-engine-sc](https://www.npmjs.com/package/@mui/styled-engine-sc)
+* [day.js](https://www.npmjs.com/package/dayjs)
 
 
 ## MVP
