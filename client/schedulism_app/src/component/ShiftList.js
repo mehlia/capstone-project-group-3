@@ -10,10 +10,11 @@ const ShiftList = ({shifts}) => {
     }) 
     return ( 
         <>
-            <h2> Shift list</h2>
+            <h2> Shift list </h2>
+            
             {mappedShifts}
         </>
-     );
+    );
 }
- 
+
 export default ShiftList;

@@ -96,4 +96,4 @@ const LogInForm = ({updateGlobalUser}) => {
     </> );
 }
 
-export default LogInForm;
+export default LogInForm; 
