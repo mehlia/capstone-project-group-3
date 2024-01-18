@@ -23,17 +23,46 @@ An Employee management system application, where the main function is to track a
 * Comply with security regulations & protocols to protect confidential employee data.
 * Allow separate access controls to employees & HR employees.
 
+user personas ===>
+
 
 ### For Developers:
 * Create a scalable system with reusable & robust functionalities for future development.
 * Clear, concise & well formatted code.
 
+### Step-By-Step Setup Instructions:
+1. Clone from GitHub Repository: `https://github.com/mehlia/capstone-project-group-3`
+2. Open up server/schedulism in IntelliJ (or IDE of choice) for Backend code.
+3. Check for correct dependencies in pom.xml file.
+4. Create a PostgreSQL database in the terminal: `createdb madame_papier_db`
+5. Run Schedulism.java application.
+6. Test mapping routes in server of choice (e.g Postman) & check database (e.g. Postico) -> Click here to download our pre-mapped Postman collection to test routes.
+7. Open up client/schedulism_app in VS Code for Frontend code.
+8. Install all the correct libraries in terminal needed to run all functionalities: `npm i` 
+`npm install dayjs`
+`npm install @mui/x-date-pickers`
+`npm install @mui/styled-engine-sc styled-components`
+`npm install @mui/material @emotion/react @emotion/styled`
+9. Run the app in terminal: `npm start`
+10. Enjoy Schedulism! 
 
 ### Libraries Used:
+**IntelliJ**
+
 * Spring Boot Starter Data JPA
 * Spring Boot Starter Web
 * Spring Boot devtools
 * PostgreSQL
+
+**VS Code**
+
+* React 18.2.0
+* React-router-dom 6.20.1
+* Material UI 5.15.0
+* mui/x-date-pickers
+* mui/styled-engine-sc
+* day.js
+
 
 ## MVP
 MSCW Diagram -->
@@ -157,6 +186,7 @@ MSCW Diagram -->
     }
 ]`
 
+
 **POST** Create New Shift Rotation: `localhost:8080/shift-rotations/createShift/4`
 
 **JSON RESPONSE**
@@ -171,17 +201,18 @@ MSCW Diagram -->
    }
 }`
 
+
 **POST** Add User to Shift Rotation: `localhost:8080/shift-rotations/addUserToShift?shiftRotationId=7&hrEmployeeId=1&userToAddId=2`
 
 **Request Params**
 
-### GET Mapping
+request param ss ===>
 
-### POST Mapping
-	
-### PATCH Mapping
 
-### DELETE Mapping
+**POST** Request a Shift: `localhost:8080/shift-rotations/5/request/4`
+
+
+**POST** Approve a Shift: `localhost:8080/shift-rotations/1/approve/1`
 
 
 ## Front-End Planning
