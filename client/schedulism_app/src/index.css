@@ -15,9 +15,10 @@ code {
 /* CSS for app */
 /* H1 log in  */
 h1 {
-  font-size: 50px;
-  color: blue;
+  font-size: 70px;
+  color: black;
   text-align: center;
+  /* font-family:; */
 }
 
 /* images of the logos */
@@ -27,14 +28,13 @@ h1 {
 }
 
 .small-logo {
-  width: 5%
+  width: 5%;
 }
 
 /* main body */
 body{
-  background-color: #A3C1AD;
+  background-color: #b6cdbd;
 }
-
 
 /* login form */
 .login-form {
@@ -56,7 +56,6 @@ body{
   display: flex;
   flex-direction: column;
 }
-
 
 .login-input {
   display: block;
@@ -94,24 +93,27 @@ body{
 
 /* nav bar */
 .nav {
-  background-color: #5b6b69;
+  background-color: #f2f9f1;
   padding: 10px;
-  position: sticky;
-  
+  /* position: sticky; */
 }
 
-.nav ul{
+.nav ul {
   white-space: nowrap;
   max-width: 1200px;
   margin: 0 auto;
   list-style: none;
   font-weight: bold;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
-.nav li{
+.nav li {
   width: 20%;
   display: inline-block;
-  font-size: 15px;
+  font-size: 20px;
+  margin: auto;
 }
 
 .nav a:link {
@@ -130,11 +132,24 @@ body{
   text-decoration: none; 
 }
 
-/* .nav li a{
-  text-decoration: none;
-  color: #4b4b4b;
-} */
+.nav a {
+  display: flex;
+  justify-content: center;
+}
 
+@media only screen and (max-width: 1200px) {
+  .nav ul {
+    max-width: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  .nav li {
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
 
 /* User Home */
 .user-details, .shift-details{
@@ -148,7 +163,6 @@ body{
     padding: 5vw;
     flex-wrap: nowrap;
     background-color: rgba(248, 248, 248, 0.3);
-    border: 1vw solid #ccc;
     margin: 10vw;
 }
 
@@ -172,6 +186,24 @@ body{
 
 .user-list-home li{
   margin-bottom: 15px;
+}
+
+/* colour palette */
+
+.first-color { 
+	background: #f2f9f1; 
+}
+	
+.second-color { 
+	background: #ddeedf; 
+}
+
+.third-color { 
+	background: #b6cdbd; 
+}
+
+.fourth-color { 
+	background: #5c715e; 
 }
 
 
