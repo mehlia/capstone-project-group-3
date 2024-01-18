@@ -1,4 +1,4 @@
-import { useState,createContext } from "react";
+import { useState, createContext } from "react";
 import UserList from "../component/UserList";
 import LogInForm from "../component/LogInForm";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -6,6 +6,7 @@ import UserHome from "../component/UserHome";
 import NavBar from "../component/NavBar";
 import ShiftList from "../component/ShiftList";
 import User from "../component/User";
+import BasicDateCalendar from "../component/BasicDateCalendar";
 
 export const GlobalUserContext = createContext({});
 
@@ -101,7 +102,7 @@ const PapierContainer = () => {
             <Route path="/user-home" element={<UserHome />} />
             <Route
               path="/my-shifts"
-              element={<ShiftList shifts={shifts} userId={globalUser.id} />}
+              element={<BasicDateCalendar shifts={shifts} />}
             />
             <Route
               path="/personal-info"
