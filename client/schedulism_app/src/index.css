@@ -122,33 +122,39 @@ body{
 .user-details, .shift-details{
   display: inline-block ;
   width: 48%;
-  margin: 10px;
+  border-radius: 5px;
 }
 
 .user-details {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; */
     align-items: center;
     padding: 5vw;
     flex-wrap: nowrap;
     background-color: rgba(248, 248, 248, 0.3);
     border: 1vw solid #ccc;
+    margin: 10vw;
 }
 
 .shift-details{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; */
     align-items: center;
     background-color: rgba(248, 248, 248, 0.3);
-    margin: 10vw;  
+    margin: 10vw; 
+    padding: 10vw; 
 }
 
 .parent-container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.user-list-home {
+  list-style: none;
+  font-weight: bold;
+
+}
+
+.user-list-home li{
+  margin-bottom: 15px;
 }
 
 

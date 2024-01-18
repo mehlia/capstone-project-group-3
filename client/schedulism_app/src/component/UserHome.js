@@ -43,7 +43,7 @@ const UserHome = () => {
 
             <div className="parent-container">
                 <section className="user-details container">
-                    <ul> 
+                    <ul className="user-list-home"> 
                         <li>{userDetails[1]}</li> 
                         <li>{userDetails[2]}</li> 
                         <li>{userDetails[3]}</li> 
