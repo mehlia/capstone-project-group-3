@@ -27,7 +27,7 @@ h1 {
 }
 
 .small-logo {
-  width: 2.5%
+  width: 5%
 }
 
 /* main body */
@@ -94,12 +94,12 @@ body{
 
 /* nav bar */
 .nav {
-  background-color: #66CDAA;
+  background-color: #5b6b69;
   padding: 10px;
   position: sticky;
   
 }
-
+/* Hello */
 .nav ul{
   white-space: nowrap;
   max-width: 1200px;
