@@ -29,7 +29,8 @@ An Employee management system application, where the main function is to track a
 * Comply with security regulations & protocols to protect confidential employee data.
 * Allow separate access controls to employees & HR employees.
 
-user personas ===>
+
+![Screenshot 2024-01-16 at 12 08 53](https://github.com/mehlia/capstone-project-group-3/assets/131881583/f5008034-f9a3-4803-9f43-54c31bc3be04)
 
 
 ### For Developers:
@@ -76,7 +77,9 @@ user personas ===>
 
 
 ## MVP
-MSCW Diagram -->
+
+![Screenshot 2024-01-16 at 12 15 54](https://github.com/mehlia/capstone-project-group-3/assets/131881583/d21c6986-2444-420c-acdd-1df423c64600)
+
 
 ## Extensions
 
@@ -84,7 +87,13 @@ MSCW Diagram -->
 
 ### UML Class Diagram:
 
+![Screenshot 2024-01-16 at 12 05 21](https://github.com/mehlia/capstone-project-group-3/assets/131881583/b4dd6794-eda7-4e34-b84d-61f7a4d4c860)
+
+
 ### ERD Diagram:
+
+![Screenshot 2024-01-16 at 12 04 48](https://github.com/mehlia/capstone-project-group-3/assets/131881583/b65ae75b-2781-4cef-bd52-aca322b9a746)
+
 
 ### RESTful Routes:
 
@@ -149,6 +158,9 @@ MSCW Diagram -->
 
 ### Props Diagram:
 
+![Screenshot 2024-01-16 at 12 14 16](https://github.com/mehlia/capstone-project-group-3/assets/131881583/a5421085-0374-46a4-a928-6d4df815be94)
 
+## Retrospective
 
+![Screenshot 2024-01-18 at 16 03 02](https://github.com/mehlia/capstone-project-group-3/assets/131881583/7f98659a-c2db-428e-a506-680a2c95a6a7)
 
