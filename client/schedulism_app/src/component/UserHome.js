@@ -50,11 +50,10 @@ const UserHome = () => {
                     </ul>
                     </section>
 
-            <div className="shift-details container">
+            <div className="shift-details container">    
                 <ShiftList shifts={shifts} userId={globalUser.id}/>
+                </div>  
             </div>
-            </div>
-            
             <Outlet/>
         </>
     );

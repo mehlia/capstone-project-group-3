@@ -7,7 +7,8 @@ console.log(shift)
         <p>Type of Shift: {shift.shiftType.shiftSlot}</p>
         <p>Start Time: {shift.shiftType.startTime}</p>  
         <p>End Time: {shift.shiftType.endTime}</p>
-    </div> );
+    </div> 
+    );
 
 }
  
