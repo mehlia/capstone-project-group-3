@@ -12,7 +12,11 @@ An Employee management system application, where the main function is to track a
 
 ## Project Aims:
 ### For Users:
-Personas -->
+
+User Personas
+
+![Screenshot 2024-01-16 at 12 08 53](https://github.com/mehlia/capstone-project-group-3/assets/131881583/472bfcd1-aa53-469f-b56f-1fced9e939e1)
+
 
 ### For Developers:
 
