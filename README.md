@@ -10,9 +10,15 @@ An Employee management system application, where the main function is to track a
 * **Kacper Nowak**
 * **Rayster Ramos**
 
-## Project Aims:
+## Project Aims
+
+###The Scenario:
 
 **The Challenge:** Rainforest Retail have difficulty managing their employee details & schedules, recently transitioning from tedious paperwork to a flashy website.
+
+* As more employees are added it becomes harder to get an overview of availabilty and where everyone is working on a given day
+
+* Keeping employee records up to date is time-consuming and error-prone.
 
 **The Solution:** Madame Papier will create an efficient HR scheduling system: Schedulism to tackle this challenge Rainforest Retail have been facing. This will improve employee schedules & requests as well as provide a much more seamless system for the team.
 
@@ -29,6 +35,9 @@ user personas ===>
 ### For Developers:
 * Create a scalable system with reusable & robust functionalities for future development.
 * Clear, concise & well formatted code.
+
+### Business Case & Risk Register:
+
 
 ### Step-By-Step Setup Instructions:
 1. Clone from GitHub Repository: `https://github.com/mehlia/capstone-project-group-3`
