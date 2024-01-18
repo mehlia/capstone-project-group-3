@@ -177,7 +177,33 @@ body{
 
 /* shift css */
 
+.shift {
+  align-items: center;
+  display: inline-block;
+  justify-content: center;
+  padding: 5vw;
+  flex-wrap: nowrap;
+  background-color: rgba(248, 248, 248, 0.3);
+  border: 1vw solid #ccc;
+  margin: 10vw;
+  width: auto;
+  height: auto;
+}
 
+/* employee list css */
+
+.user {
+  align-items: center;
+  display: inline-block;
+  justify-content: center;
+  padding: 5vw;
+  flex-wrap: nowrap;
+  background-color: rgba(248, 248, 248, 0.3);
+  border: 1vw solid #ccc;
+  margin: 10vw;
+  width: auto;
+  height: auto;
+}
 
 
 
