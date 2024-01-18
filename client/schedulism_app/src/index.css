@@ -96,6 +96,7 @@ body{
   background-color: #f2f9f1;
   padding: 10px;
   /* position: sticky; */
+  top: 108px;
 }
 
 .nav ul {
