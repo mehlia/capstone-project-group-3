@@ -93,11 +93,11 @@ MSCW Diagram
 
 ### Wireframe:
 
-![Screenshot 2024-01-16 at 12 14 16](https://github.com/mehlia/capstone-project-group-3/assets/131881583/794e0537-f6aa-4b8c-b57d-226235fe84fe)
+
 
 ### Props Diagram:
 
-
+![Screenshot 2024-01-16 at 12 14 16](https://github.com/mehlia/capstone-project-group-3/assets/131881583/794e0537-f6aa-4b8c-b57d-226235fe84fe)
 
 
 
