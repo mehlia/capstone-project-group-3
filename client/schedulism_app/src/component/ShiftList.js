@@ -10,18 +10,23 @@ const ShiftList = ({ shifts }) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const mappedShifts = shifts.map((shift) => {
-    // Check if the shift matches the selected date
+    // Checks to see if the shift matches the selected date
     if (!selectedDate || shift.date === selectedDate) {
       return <Shift key={shift.id} shift={shift} />;
     }
     return null;
   });
-
+ 
   return (
     <>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <h2> My Schedule</h2>
-      <BasicDateCalendar onDateChange={setSelectedDate} />
+      <DateCalendar
+       date={selectedDate} 
+      onChange={(newDate) => setSelectedDate(newDate)}
+      />
       {mappedShifts}
+      </LocalizationProvider>
     </>
   );
 };
