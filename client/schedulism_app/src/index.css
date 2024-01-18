@@ -141,6 +141,7 @@ body{
     padding: 10vw; 
 }
 
+
 .parent-container {
   display: flex;
   justify-content: center;
@@ -156,6 +157,55 @@ body{
 .user-list-home li{
   margin-bottom: 15px;
 }
+
+/* user css */
+
+.user {
+  align-items: center;
+  display: inline-block;
+  justify-content: center;
+  position: absolute;
+  right: 27%;
+  padding: 5vw;
+  flex-wrap: nowrap;
+  background-color: rgba(248, 248, 248, 0.3);
+  border: 1vw solid #ccc;
+  margin: 10vw;
+  width: auto;
+  height: auto;
+}
+
+/* shift css */
+
+.shift {
+  align-items: center;
+  display: inline-block;
+  justify-content: center;
+  padding: 5vw;
+  flex-wrap: nowrap;
+  background-color: rgba(248, 248, 248, 0.3);
+  border: 1vw solid #ccc;
+  margin: 10vw;
+  width: auto;
+  height: auto;
+}
+
+/* employee list css */
+
+.user {
+  align-items: center;
+  display: inline-block;
+  justify-content: center;
+  padding: 5vw;
+  flex-wrap: nowrap;
+  background-color: rgba(248, 248, 248, 0.3);
+  border: 1vw solid #ccc;
+  margin: 10vw;
+  width: auto;
+  height: auto;
+}
+
+
 
 
 
