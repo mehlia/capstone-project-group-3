@@ -9,6 +9,9 @@ const NavBar = () => {
  const renderHRNav = () => (
    <>
      <li>
+       <Link to="/user-home">Home</Link>
+     </li>
+     <li>
        <Link to="/personal-info">Personal Info</Link>
      </li>
      <li>
@@ -28,6 +31,9 @@ const NavBar = () => {
 
  const renderRegularNav = () => (
    <>
+     <li>
+       <Link to="/user-home">Home</Link>
+     </li>
      <li>
        <Link to="/personal-info">Personal Info</Link>
      </li>
