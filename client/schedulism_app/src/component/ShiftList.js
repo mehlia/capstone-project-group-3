@@ -13,7 +13,7 @@ const ShiftList = ({shifts}) => {
             <h2> My Schedule</h2>
             {mappedShifts}
         </>
-     );
+    );
 }
- 
+
 export default ShiftList;

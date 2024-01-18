@@ -39,13 +39,22 @@ const UserHome = () => {
     return ( 
         <>
             <h1> This is the user home   </h1>
-            <ul>
-                <li>{userDetails[1]}</li> 
-                <li>{userDetails[2]}</li> 
-                <li>{userDetails[3]}</li> 
-                <li>{userDetails[4]}</li> 
-            </ul>
-            <ShiftList shifts={shifts} userId={globalUser.id}/>
+
+            <div className="parent-container">
+                <section className="user-details container">
+                    <ul className="user-list-home"> 
+                        <li>{userDetails[1]}</li> 
+                        <li>{userDetails[2]}</li> 
+                        <li>{userDetails[3]}</li> 
+                        <li>{userDetails[4]}</li> 
+                    </ul>
+                    </section>
+
+            <div className="shift-details container">
+                <ShiftList shifts={shifts} userId={globalUser.id}/>
+            </div>
+            </div>
+            
             <Outlet/>
         </>
     );

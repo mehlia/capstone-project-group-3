@@ -33,6 +33,7 @@ const User = ({user, useDelete, useTitle, deleteUserById}) => {
 
     return (
         <div className="user">
+        <h3>Details</h3>
         {useTitle ? (
         <h3>Personal info</h3>
         ) : null}        <p>Name: {userOne.name}</p>
