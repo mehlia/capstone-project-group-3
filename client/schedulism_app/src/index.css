@@ -27,7 +27,7 @@ h1 {
 }
 
 .small-logo {
-  width: 2.5%
+  width: 5%
 }
 
 /* main body */
@@ -94,7 +94,7 @@ body{
 
 /* nav bar */
 .nav {
-  background-color: #66CDAA;
+  background-color: #4a5bd7;
   padding: 10px;
   position: sticky;
   
