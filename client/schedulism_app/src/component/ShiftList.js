@@ -1,4 +1,3 @@
-import Shift from "./Shift";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
@@ -21,13 +20,11 @@ const ShiftList = ({ shifts }) => {
   //       backgroundColor: isSelected ? 'lightblue' : event.shift.is_approved ? 'green' : 'orange',
   //     },
   //   };
-  // };
+  // }; For future work - Don't delete :)  
 
   const parseTimeStringToDate = (timeString, timeDate) => {
-    console.log(timeDate);
     const [hours, minutes, seconds] = timeString.split(':');
     const [year, month, day] = timeDate.split('-');
-    console.log(year,month,day)
     const currentDate = new Date(Number(year),Number(month)-1,Number(day)); // Not actually sure why we need to do -1 on the month but we do
     currentDate.setHours(Number(hours));
     currentDate.setMinutes(Number(minutes));
@@ -43,7 +40,6 @@ const ShiftList = ({ shifts }) => {
     end: parseTimeStringToDate(shift.shiftType.endTime, shift.date)
     }));
   
-    console.log(events);
 
   const handleEventClick = (event) => {
     setSelectedShift(event);
@@ -80,6 +76,7 @@ const ShiftList = ({ shifts }) => {
             <h2>Shift Details</h2>
             <p>Date: {moment(selectedShift.start).format("MMMM DD, YYYY")}</p>
             <p>Type of Shift: {selectedShift.title}</p>
+            <p>Shift Id: {selectedShift.id}</p>
           </div>
         )}
       </Modal>

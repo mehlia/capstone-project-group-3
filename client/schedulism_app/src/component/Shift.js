@@ -1,6 +1,5 @@
 const Shift = ({shift}) => {
     
-console.log(shift)
     return ( 
     <div className="shift">
         <h3>Date: {shift.date}</h3>

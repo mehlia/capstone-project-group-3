@@ -28,7 +28,6 @@ const UserHome = () => {
                 globalUser.username,
                 globalUser.shiftRotations
             ])
-            console.log(shifts);
         }
     }
 
