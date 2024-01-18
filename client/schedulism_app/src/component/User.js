@@ -5,7 +5,6 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-
 const User = ({ user, useDelete, useTitle, deleteUserById }) => {
   const { globalUser } = useContext(GlobalUserContext);
   const navigate = useNavigate();
