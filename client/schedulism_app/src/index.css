@@ -179,7 +179,7 @@ body{
 .user-details {
     align-items: center;
     background-color: rgba(248, 248, 248, 0.3);
-    margin: -60vw 5vw 0 5vw; /* changes the height of the user detail card in user home*/
+    margin: -55vw 5vw 0 5vw; /* changes the height of the user detail card in user home*/
     padding: 3vw;
     
 }
