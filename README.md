@@ -27,7 +27,10 @@ User Personas
 * PostgreSQL
 
 ## MVP
-MSCW Diagram -->
+
+MSCW Diagram
+
+![Screenshot 2024-01-16 at 12 15 54](https://github.com/mehlia/capstone-project-group-3/assets/131881583/4fae84d7-7b49-4062-bece-56c2f0050f46)
 
 ## Extensions
 
@@ -35,7 +38,11 @@ MSCW Diagram -->
 
 ### UML Class Diagram:
 
+![Screenshot 2024-01-16 at 12 05 21](https://github.com/mehlia/capstone-project-group-3/assets/131881583/b09655da-b2fe-449e-98a6-93f6e00f845b)
+
 ### ERD Diagram:
+
+![Screenshot 2024-01-16 at 12 04 48](https://github.com/mehlia/capstone-project-group-3/assets/131881583/5ee24798-3f4a-46c7-878d-beab003e2338)
 
 ### RESTful Routes:
 
@@ -86,7 +93,11 @@ MSCW Diagram -->
 
 ### Wireframe:
 
+![Screenshot 2024-01-16 at 12 14 16](https://github.com/mehlia/capstone-project-group-3/assets/131881583/794e0537-f6aa-4b8c-b57d-226235fe84fe)
+
 ### Props Diagram:
+
+
 
 
 
