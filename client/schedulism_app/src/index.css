@@ -22,10 +22,11 @@ h1 {
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 30px;
   color: black;
   text-align: center;
 }
+
 
 /* images of the logos */
 .big-logo {
@@ -207,6 +208,18 @@ body{
 
 /* list of users */
 
+.list-of-users {
+  display: flex; 
+  flex-wrap: wrap;
+  align-items: center; 
+  justify-content: space-evenly; 
+  width: 95%; 
+  height: 10%;
+  background-color: rgba(248, 248, 248, 0.3);
+  border-radius: 5px;
+  /* border: 1vw solid #ccc; */
+  transform: translate(2.5%, 2.5%);
+}
 
 
 

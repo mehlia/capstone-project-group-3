@@ -58,7 +58,7 @@ const LogInForm = ({updateGlobalUser}) => {
     <section className="login-form">
         <Outlet />
         <section className="login-title">
-            <h1>Welcome</h1>
+            <h1>WELCOME</h1>
             <img className="big-logo" src={bigLogo} alt="schedulism logo" />
 
         </section>
