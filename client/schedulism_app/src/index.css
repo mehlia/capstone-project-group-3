@@ -214,11 +214,9 @@ body{
   align-items: center; 
   justify-content: space-evenly; 
   width: 95%; 
-  height: 10%;
   background-color: rgba(248, 248, 248, 0.3);
   border-radius: 5px;
   /* border: 1vw solid #ccc; */
-  transform: translate(2.5%, 2.5%);
 }
 
 .user {
@@ -227,7 +225,8 @@ body{
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 3px;
-}
+} */
+
 
 
 /* colour palette */
@@ -248,6 +247,9 @@ body{
 	background: #5c715e; 
 }
 
+.footer{
+  
+}
 
 
 

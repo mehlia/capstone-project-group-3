@@ -39,7 +39,7 @@ const UserHome = () => {
 
     return ( 
         <>
-            <h1> WELCOME </h1>
+            <h1> Welcome {globalUser.name} </h1>
 
             <div className="parent-container">
                 <div className="user-details ">
@@ -58,6 +58,9 @@ const UserHome = () => {
             </div>
             </div>
             
+            <footer>
+                <p> 2024 Madame Papier All Rights Reserved, Otherwise We Will Be Sueing &#174;</p>
+            </footer>
             <Outlet/>
         </>
     );
