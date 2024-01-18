@@ -50,11 +50,6 @@ const LogInForm = ({updateGlobalUser}) => {
                 alert("Incorrect user info");
             });
         }
-
-//      resets userinputName and password ( could remove )
-        // setInputName("");
-        // setPassword(""); 
-
     }
 
 

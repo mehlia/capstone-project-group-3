@@ -31,7 +31,6 @@ const UserHome = () => {
         }
     }
 
-    console.log("inUserHome", globalUser)
 
     useEffect(() => {
         getUserShifts();

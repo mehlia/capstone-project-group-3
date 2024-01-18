@@ -10,8 +10,7 @@ const ShiftList = ({shifts}) => {
     }) 
     return ( 
         <>
-            <h2> Shift list </h2>
-            
+            <h2> My Schedule</h2>
             {mappedShifts}
         </>
     );

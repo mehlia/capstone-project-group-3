@@ -79,7 +79,8 @@ public class UserService {
         User userToDelete = userRepository.findById(userId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
         {
-         userRepository.deleteById(userId);
+            userToDelete.getShiftRotations().forEach(shiftRotation -> {shiftRotation.setUser(null);});
+            userRepository.deleteById(userId);
         }
         return null;
     }
