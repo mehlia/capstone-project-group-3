@@ -42,14 +42,16 @@ const UserHome = () => {
             <h1> WELCOME </h1>
 
             <div className="parent-container">
-                <section className="user-details container">
+                <div className="user-details ">
+                    
                     <ul className="user-list-home"> 
+                        <li>User: </li>
                         <li>{userDetails[1]}</li> 
                         <li>{userDetails[2]}</li> 
                         <li>{userDetails[3]}</li> 
                         <li>{userDetails[4]}</li> 
                     </ul>
-                    </section>
+                    </div>
 
             <div className="shift-details container">
                 <ShiftListHome shifts={shifts} userId={globalUser.id}/>
