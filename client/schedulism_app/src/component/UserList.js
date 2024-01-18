@@ -14,10 +14,10 @@ const UserList = ({users, allUsers, deleteUserById}) => {
       })
 
     return (
-        <>
+        <div className="employee-list">
         <h2>All Employees</h2>
         {mappedUsers} 
-        </>
+        </div>
     );
 }
 
