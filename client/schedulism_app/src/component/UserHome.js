@@ -39,7 +39,7 @@ const UserHome = () => {
 
     return ( 
         <>
-            <h1> This is the user home   </h1>
+            <h1> WELCOME </h1>
 
             <div className="parent-container">
                 <section className="user-details container">

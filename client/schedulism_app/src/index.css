@@ -99,17 +99,35 @@ body{
   position: sticky;
   
 }
-/* Hello */
+
 .nav ul{
   white-space: nowrap;
   max-width: 1200px;
   margin: 0 auto;
+  list-style: none;
+  font-weight: bold;
 }
 
 .nav li{
   width: 20%;
   display: inline-block;
   font-size: 15px;
+}
+
+.nav a:link {
+  text-decoration: none; 
+}
+
+.nav a:visited { 
+  text-decoration: none; 
+} 
+
+.nav a:hover { 
+  text-decoration: none; 
+} 
+
+.nav a:active { 
+  text-decoration: none; 
 }
 
 /* .nav li a{
@@ -150,7 +168,6 @@ body{
 .user-list-home {
   list-style: none;
   font-weight: bold;
-
 }
 
 .user-list-home li{
