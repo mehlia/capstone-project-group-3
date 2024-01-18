@@ -1,4 +1,8 @@
-# Group 3 Capstone Project: Employee HR System "Madame Papier" 📅
+# Group 3 Madame Papier's Capstone Project: Employee HR System "Schedulism" 📅
+
+![Capstone - Group 3](https://github.com/mehlia/capstone-project-group-3/assets/131881583/510435b4-1b4c-4789-b2a9-4d72efd7c361)
+
+![Capstone - Group 3 (1)](https://github.com/mehlia/capstone-project-group-3/assets/131881583/ec9baf69-90bf-49ed-89a4-5e7d6a62e489)
 
 ## About:
 An Employee management system application, where the main function is to track an employee’s details & work schedule with additional options to request/approve shifts depending on their employee type e.g. Employee or HR Employee.
