@@ -88,6 +88,9 @@ const LogInForm = ({updateGlobalUser}) => {
             </form>
         </div>
     </section>
+    <footer className="footer">
+                <p> 2024 Madame Papier All Rights Reserved, Otherwise We Will Be Sueing &#174;</p>
+            </footer>
     </> );
 }
 

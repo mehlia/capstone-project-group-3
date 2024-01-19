@@ -36,6 +36,7 @@ h2 {
 
 .small-logo {
   width: 3%;
+
 }
 
 /* main body */
@@ -247,8 +248,8 @@ body{
 	background: #5c715e; 
 }
 
-.footer{
-  
+.footer p{
+ text-align: center;
 }
 
 
