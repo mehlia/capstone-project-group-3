@@ -28,6 +28,6 @@ const ShiftList = ({ shifts }) => {
   );
 };
 <footer className="footer">
-<p> 2024 Madame Papier All Rights Reserved, Otherwise We Will Be Sueing &#174;</p>
+<p> 2024 Madame Papier All Rights Reserved, Otherwise We Will Be Suing &#174;</p>
 </footer>
 export default ShiftList;
