@@ -51,11 +51,14 @@ const NavBar = () => {
 
  return (
    <nav className="nav">
+     <Link to = "/user-home">
     <img className="small-logo" src={smallLogo} alt="schedulism mini-logo" />
+     </Link>
      <ul>
        {globalUser.userRole === "HR_EMPLOYEE" ? renderHRNav() : renderRegularNav()}
      </ul>
    </nav>
+   
  );
 };
 
