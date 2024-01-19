@@ -2,8 +2,6 @@
 
 ![Capstone - Group 3](https://github.com/mehlia/capstone-project-group-3/assets/131881583/510435b4-1b4c-4789-b2a9-4d72efd7c361)
 
-![Capstone - Group 3 (1)](https://github.com/mehlia/capstone-project-group-3/assets/131881583/ec9baf69-90bf-49ed-89a4-5e7d6a62e489)
-
 ## About:
 An Employee management system application, where the main function is to track an employee’s details & work schedule with additional options to request/approve shifts depending on their employee type e.g. Employee or HR Employee.
 
@@ -81,11 +79,22 @@ An Employee management system application, where the main function is to track a
 
 
 ## MVP
+* Display Employee's personal information by user ID ✅
+* Display all employees & their information by user ID, where regular Employees can only access their own information & HR Employees can view all employees using acess control ✅
+* Display all shift rotations of a specific employee ✅
+* Display a specific shift by ID via a user ID ✅
+  
+  
+## Extensions
+* Allow a HR Employee to create a user account ✅
+* Allow an Employee to delete their account & a HR Employee to delete any account ✅
+* Allow HR Employees to create shift rotations ✅
+* Allow HR Employees to assign specific users to the shift rotation ✅
+* Update user details by ID
+
 
 ![Screenshot 2024-01-16 at 12 15 54](https://github.com/mehlia/capstone-project-group-3/assets/131881583/d21c6986-2444-420c-acdd-1df423c64600)
 
-
-## Extensions
 
 ## Back-End Planning
 
@@ -162,6 +171,11 @@ An Employee management system application, where the main function is to track a
 ## Front-End Planning
 
 ### Wireframe:
+
+<img width="1214" alt="Screenshot 2024-01-19 at 09 09 42" src="https://github.com/mehlia/capstone-project-group-3/assets/131881583/f2382a2a-1181-4165-820c-5c6ef16bb67f">
+
+<img width="1186" alt="Screenshot 2024-01-19 at 09 10 01" src="https://github.com/mehlia/capstone-project-group-3/assets/131881583/a1d24ba8-cf30-4e57-a641-c86813f4cb6a">
+
 
 ### Props Diagram:
 
