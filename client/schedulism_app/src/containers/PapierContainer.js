@@ -134,5 +134,7 @@ const PapierContainer = () => {
     </>
   );
 };
-
+<footer className="footer">
+<p> 2024 Madame Papier All Rights Reserved, Otherwise We Will Be Sueing &#174;</p>
+</footer>
 export default PapierContainer;

@@ -31,15 +31,18 @@ const User = ({ user, useDelete, useTitle, deleteUserById }) => {
   };
 
   return (
-    <div className="user">
+    <div className="user ">
+      <div className="list-of-users">
       <h3>Details</h3>
       {useTitle ? (
         <h3>Personal info</h3>
       ) : null}
-      <p>Name: {userOne.name}</p>
-      <p>Email Address: {userOne.email}</p>
-      <p>Username: {userOne.username}</p>
-      <p>Occupation: {userOne.occupation}</p>
+        
+          <p>Name: {userOne.name}</p>
+          <p>Email Address: {userOne.email}</p>
+          <p>Username: {userOne.username}</p>
+          <p>Occupation: {userOne.occupation}</p>
+        
       {useDelete ? (
         <>
           <Button onClick={handleDeleteButton}>Delete</Button>
@@ -58,8 +61,11 @@ const User = ({ user, useDelete, useTitle, deleteUserById }) => {
               <Button onClick={handleCancelDelete}>No</Button>
             </Box>
           </Modal>
+          
         </>
+
       ) : null}
+    </div>
     </div>
   );
 };

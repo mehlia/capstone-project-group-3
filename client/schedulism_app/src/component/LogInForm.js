@@ -58,7 +58,7 @@ const LogInForm = ({updateGlobalUser}) => {
     <section className="login-form">
         <Outlet />
         <section className="login-title">
-            <h1>Welcome</h1>
+            <h1>WELCOME</h1>
             <img className="big-logo" src={bigLogo} alt="schedulism logo" />
 
         </section>
@@ -88,6 +88,9 @@ const LogInForm = ({updateGlobalUser}) => {
             </form>
         </div>
     </section>
+    <footer className="footer">
+                <p> 2024 Madame Papier All Rights Reserved, Otherwise We Will Be Sueing &#174;</p>
+            </footer>
     </> );
 }
 
