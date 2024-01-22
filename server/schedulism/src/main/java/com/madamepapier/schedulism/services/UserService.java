@@ -88,20 +88,24 @@ public class UserService {
         return null;
     }
 
-
+     // Update a User's detail
     public User updateUserDetails(long userId, UserDTO userDTO) {
         User userDetailsUpdated = userRepository.findById(userId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
+
         if (!userDetailsUpdated.getName().equals(userDTO.getName())) {
             userDetailsUpdated.setName(userDTO.getName());
+            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
         }
         if (!userDetailsUpdated.getEmail().equals(userDTO.getEmail())) {
             userDetailsUpdated.setEmail(userDTO.getEmail());
+            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
         }
         if (!userDetailsUpdated.getOccupation().equals(userDTO.getOccupation())) {
             userDetailsUpdated.setOccupation(userDTO.getOccupation());
+            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
         }
-        userRepository.save(updateUserDetails(userId,userDTO));
+        userRepository.save(userDetailsUpdated);
         return userDetailsUpdated;
     }
 

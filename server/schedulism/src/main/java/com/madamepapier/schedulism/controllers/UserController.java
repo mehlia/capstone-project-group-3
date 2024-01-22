@@ -2,6 +2,7 @@ package com.madamepapier.schedulism.controllers;
 
 import com.madamepapier.schedulism.models.ShiftRotation;
 import com.madamepapier.schedulism.models.User;
+import com.madamepapier.schedulism.models.UserDTO;
 import com.madamepapier.schedulism.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -68,12 +69,25 @@ public class UserController {
     @DeleteMapping("/{requesterId}/{userId}")
     public ResponseEntity<User> deleteUserById(
             @PathVariable long requesterId,
-            @PathVariable long userId
-    ){
+            @PathVariable long userId){
         try {
             return new ResponseEntity<>(userService.deleteUser(userId, requesterId), HttpStatus.NO_CONTENT);
         } catch (ErrorResponseException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    // Update a User's Detail
+    @PatchMapping("/{userId}")
+    public ResponseEntity<User> updateUserDetails(
+            @PathVariable Long userId,
+            @RequestBody UserDTO userDTO
+            ){
+        try{
+            User userinfo = userService.updateUserDetails(userId,userDTO);
+            return new ResponseEntity<>(userinfo,HttpStatus.OK);
+        } catch (ErrorResponseException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND) ;
         }
     }
 
