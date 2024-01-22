@@ -40,4 +40,7 @@ public class UserDTO {
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
+
+
+
 }
