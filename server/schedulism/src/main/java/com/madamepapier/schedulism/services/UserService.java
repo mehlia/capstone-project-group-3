@@ -2,6 +2,7 @@ package com.madamepapier.schedulism.services;
 
 import com.madamepapier.schedulism.models.ShiftRotation;
 import com.madamepapier.schedulism.models.User;
+import com.madamepapier.schedulism.models.UserDTO;
 import com.madamepapier.schedulism.models.UserRole;
 import com.madamepapier.schedulism.repositories.ShiftRotationRepository;
 import com.madamepapier.schedulism.repositories.UserRepository;
@@ -23,24 +24,24 @@ public class UserService {
     @Autowired
     ShiftRotationRepository shiftRotationRepository;
 
-//    Display all employees function
-    public List<User> findAllUsers(long requesterId){
+    //    Display all employees function
+    public List<User> findAllUsers(long requesterId) {
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
-        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE)){
+        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE)) {
             throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
         return userRepository.findAll();
     }
 
     //Find User by ID
-    public User findUserById(long requesterId, long idToFind){
+    public User findUserById(long requesterId, long idToFind) {
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
         User userToFind = userRepository.findById(idToFind).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE || requesterId == idToFind)){
+        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE || requesterId == idToFind)) {
             throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
         return userToFind;
@@ -58,11 +59,11 @@ public class UserService {
     }
 
     // Create new user
-    public User createNewUser(User newUser, long requesterId){
+    public User createNewUser(User newUser, long requesterId) {
         User requester = userRepository.findById(requesterId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
 
-        if(!(requester.getUserRole() == UserRole.HR_EMPLOYEE)){
+        if (!(requester.getUserRole() == UserRole.HR_EMPLOYEE)) {
             throw new ErrorResponseException(HttpStatus.FORBIDDEN);
         }
         return userRepository.save(newUser);
@@ -79,16 +80,41 @@ public class UserService {
         User userToDelete = userRepository.findById(userId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
         {
-            userToDelete.getShiftRotations().forEach(shiftRotation -> {shiftRotation.setUser(null);});
+            userToDelete.getShiftRotations().forEach(shiftRotation -> {
+                shiftRotation.setUser(null);
+            });
             userRepository.deleteById(userId);
         }
         return null;
     }
 
-    //Check if user is HR employee -- can implement this if/when we want to reduce code repetition
-    private void checkIfUserIsHREmployee(User user) {
-        if (user.getUserRole() != UserRole.HR_EMPLOYEE) {
-            throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+     // Update a User's detail
+    public User updateUserDetails(long userId, UserDTO userDTO) {
+        User userDetailsUpdated = userRepository.findById(userId).orElseThrow(() ->
+                new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        if (!userDetailsUpdated.getName().equals(userDTO.getName())) {
+            userDetailsUpdated.setName(userDTO.getName());
+            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+        }
+        if (!userDetailsUpdated.getEmail().equals(userDTO.getEmail())) {
+            userDetailsUpdated.setEmail(userDTO.getEmail());
+            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+        }
+        if (!userDetailsUpdated.getOccupation().equals(userDTO.getOccupation())) {
+            userDetailsUpdated.setOccupation(userDTO.getOccupation());
+            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+        }
+        userRepository.save(userDetailsUpdated);
+        return userDetailsUpdated;
+    }
+
+
+        //Check if user is HR employee -- can implement this if/when we want to reduce code repetition
+        private void checkIfUserIsHREmployee (User user){
+            if (user.getUserRole() != UserRole.HR_EMPLOYEE) {
+                throw new ErrorResponseException(HttpStatus.FORBIDDEN);
+            }
         }
     }
-}
+
