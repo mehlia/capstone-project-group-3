@@ -118,4 +118,29 @@ public class ShiftRotationService {
         }
         return shiftRotationRepository.findAllByHasBeenRequestedTrue();
     }
+
+//    Delete employee shifts
+//    public void ShiftRotation (long requesterId,long userId, long shiftID){
+//       User requester = userRepository.findById(requesterId)
+//               .orElseThrow(()-> new ErrorResponseException(HttpStatus.FORBIDDEN));
+//
+//        if (requester.getUserRole() != UserRole.HR_EMPLOYEE) {
+//            throw new CustomException("Only HR employees can delete shifts.");
+//        }
+//
+//        User userToDeleteShift = userRepository.findById(userId)
+//                .orElseThrow(()-> new ErrorResponseException(HttpStatus.NOT_FOUND));
+//        {
+//            userToDeleteShift.getShiftRotations();{
+//                if userToDeleteShift == shiftID{
+//            }
+//
+//
+//
+//        }
+//
+//    }
 }
+//I want to delete employee shift.
+//first i would need to check whether the person requesting to delete the individuals shift is an HR
+//I will then need to insert the id of the user to delete and the specific shift ID
