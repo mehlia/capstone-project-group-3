@@ -93,19 +93,26 @@ public class UserService {
         User userDetailsUpdated = userRepository.findById(userId).orElseThrow(() ->
                 new ErrorResponseException(HttpStatus.NOT_FOUND));
 
+    boolean isUpdateRequired = false;
+
         if (!userDetailsUpdated.getName().equals(userDTO.getName())) {
             userDetailsUpdated.setName(userDTO.getName());
-            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+            isUpdateRequired = true;
         }
         if (!userDetailsUpdated.getEmail().equals(userDTO.getEmail())) {
             userDetailsUpdated.setEmail(userDTO.getEmail());
-            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+            isUpdateRequired = true;
         }
         if (!userDetailsUpdated.getOccupation().equals(userDTO.getOccupation())) {
             userDetailsUpdated.setOccupation(userDTO.getOccupation());
-            throw new ErrorResponseException(HttpStatus.BAD_REQUEST);
+            isUpdateRequired = true;
         }
-        userRepository.save(userDetailsUpdated);
+        if(isUpdateRequired) {
+            userRepository.save(userDetailsUpdated);
+        } else{
+            throw new ErrorResponseException(HttpStatus.NOT_FOUND);
+
+        }
         return userDetailsUpdated;
     }
 
