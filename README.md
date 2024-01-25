@@ -100,12 +100,12 @@ An Employee management system application, where the main function is to track a
 
 ### UML Class Diagram:
 
-![Screenshot 2024-01-16 at 12 05 21](https://github.com/mehlia/capstone-project-group-3/assets/131881583/b4dd6794-eda7-4e34-b84d-61f7a4d4c860)
+<img width="572" alt="Screenshot 2024-01-25 at 09 58 50" src="https://github.com/mehlia/capstone-project-group-3/assets/145555841/e1425db5-bddb-4091-bd58-f1d9c5e762f0">
 
 
 ### ERD Diagram:
 
-![Screenshot 2024-01-16 at 12 04 48](https://github.com/mehlia/capstone-project-group-3/assets/131881583/b65ae75b-2781-4cef-bd52-aca322b9a746)
+<img width="644" alt="Screenshot 2024-01-25 at 09 59 07" src="https://github.com/mehlia/capstone-project-group-3/assets/145555841/27e27e5d-46ff-4d58-b650-1402eedfbc6a">
 
 
 ### RESTful Routes:
