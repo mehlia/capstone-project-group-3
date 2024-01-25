@@ -120,7 +120,7 @@ public class ShiftRotationService {
     }
 
 //    Delete employee shifts
-public void ShiftRotation (long requesterId,long userId, long shiftID){
+public void deleteSpecificShifts (long requesterId,long userId, long shiftID){
         // First find HR user
     User requester = userRepository.findById(requesterId)
             .orElseThrow(()-> new ErrorResponseException(HttpStatus.FORBIDDEN));
