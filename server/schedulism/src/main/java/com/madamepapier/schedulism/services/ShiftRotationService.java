@@ -120,27 +120,40 @@ public class ShiftRotationService {
     }
 
 //    Delete employee shifts
-//    public void ShiftRotation (long requesterId,long userId, long shiftID){
-//       User requester = userRepository.findById(requesterId)
-//               .orElseThrow(()-> new ErrorResponseException(HttpStatus.FORBIDDEN));
-//
-//        if (requester.getUserRole() != UserRole.HR_EMPLOYEE) {
-//            throw new CustomException("Only HR employees can delete shifts.");
-//        }
-//
-//        User userToDeleteShift = userRepository.findById(userId)
-//                .orElseThrow(()-> new ErrorResponseException(HttpStatus.NOT_FOUND));
-//        {
-//            userToDeleteShift.getShiftRotations();{
-//                if userToDeleteShift == shiftID{
-//            }
-//
-//
-//
-//        }
-//
-//    }
+public void ShiftRotation (long requesterId,long userId, long shiftID){
+        // First find HR user
+    User requester = userRepository.findById(requesterId)
+            .orElseThrow(()-> new ErrorResponseException(HttpStatus.FORBIDDEN));
+       //   Make sure it is an HR Employee
+    if (requester.getUserRole() != UserRole.HR_EMPLOYEE) {
+        throw new CustomException("Only HR employees can delete shifts.");
+    }
+      // Find User
+    User userToDeleteShift = userRepository.findById(userId)
+            .orElseThrow(()-> new ErrorResponseException(HttpStatus.NOT_FOUND));
+    // Create a variable for shifts of the user
+    List<ShiftRotation> shiftRotations = userToDeleteShift.getShiftRotations();
+     // Create a ShiftRotation variable called shiftRotationToRemove and make it equal to null
+    ShiftRotation shiftRotationToRemove= null;
+
+    //Iterate through the list, if the shiftrotation is equal to shift id and sets the value to null
+     for(ShiftRotation shiftRotation: shiftRotations){
+          if(shiftRotation.getId() == shiftID){
+              shiftRotationToRemove = shiftRotation;
+              break;
+           }
+     }
+     if (shiftRotationToRemove != null){
+         shiftRotations.remove(shiftRotationToRemove);
+         userRepository.save(userToDeleteShift);
+     }
+    }
 }
+
+//userToDeleteShift.getShiftRotations();
+//            for(userToDeleteShift: shiftID);
+//Pseudo code
 //I want to delete employee shift.
 //first i would need to check whether the person requesting to delete the individuals shift is an HR
+// I need to get the list of shift rotatiion fo the user
 //I will then need to insert the id of the user to delete and the specific shift ID
