@@ -165,8 +165,9 @@ An Employee management system application, where the main function is to track a
 
 6. **GET** View all Shift Requests: `localhost:8080/shift-rotations/shiftRequests/1`
 
-	* Displays all shift requests for a HR Employee. 
+	* Displays all shift requests for a HR Employee.
 
+## Demo
 
 ## Front-End Planning
 
