@@ -86,11 +86,11 @@ An Employee management system application, where the main function is to track a
   
   
 ## Extensions
-* Allow a HR Employee to create a user account ✅
+* Allow a HR Employee to create a user account (back-end code complete, front-end implementation pending)
 * Allow an Employee to delete their account & a HR Employee to delete any account ✅
-* Allow HR Employees to create shift rotations ✅
-* Allow HR Employees to assign specific users to the shift rotation ✅
-* Update user details by ID
+* Allow HR Employees to create shift rotations (back-end code complete, front-end implementation pending)
+* Allow HR Employees to assign specific users to the shift rotation (back-end code complete, front-end implementation pending)
+* Update user details by ID (back-end code complete, front-end implementation pending)
 
 
 ![Screenshot 2024-01-16 at 12 15 54](https://github.com/mehlia/capstone-project-group-3/assets/131881583/d21c6986-2444-420c-acdd-1df423c64600)
