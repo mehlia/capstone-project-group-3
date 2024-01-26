@@ -1,5 +1,6 @@
 package com.madamepapier.schedulism.services;
 
+import com.madamepapier.schedulism.components.CustomException;
 import com.madamepapier.schedulism.models.ShiftRotation;
 import com.madamepapier.schedulism.models.User;
 import com.madamepapier.schedulism.models.UserDTO;
@@ -114,6 +115,36 @@ public class UserService {
 
         }
         return userDetailsUpdated;
+    }
+
+    //    Delete employee shifts
+    public void deleteSpecificShifts (long requesterId,long userId, long shiftId){
+        User requester = userRepository.findById(requesterId)
+                .orElseThrow(()-> new ErrorResponseException(HttpStatus.FORBIDDEN));
+
+        if (requester.getUserRole() != UserRole.HR_EMPLOYEE) {
+            throw new CustomException("Only HR employees can delete shifts.");
+        }
+
+        User userToDeleteShift = userRepository.findById(userId)
+                .orElseThrow(()-> new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+        List<ShiftRotation> shiftRotations = userToDeleteShift.getShiftRotations();
+
+        ShiftRotation shiftRotationToRemove = null;
+
+        for(ShiftRotation shiftRotation: shiftRotations){
+            if(shiftRotation.getId().equals(shiftId)){
+                shiftRotationToRemove = shiftRotation;
+                break;
+            }
+        }
+        if (shiftRotationToRemove != null){
+            shiftRotationRepository.deleteById(shiftRotationToRemove.getId());
+            shiftRotations.remove(shiftRotationToRemove);
+            userToDeleteShift.setShiftRotations(shiftRotations);
+            userRepository.save(userToDeleteShift);
+        }
     }
 
         //Check if user is HR employee -- can implement this if/when we want to reduce code repetition
