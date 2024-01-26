@@ -116,7 +116,6 @@ public class UserService {
         return userDetailsUpdated;
     }
 
-
         //Check if user is HR employee -- can implement this if/when we want to reduce code repetition
         private void checkIfUserIsHREmployee (User user){
             if (user.getUserRole() != UserRole.HR_EMPLOYEE) {

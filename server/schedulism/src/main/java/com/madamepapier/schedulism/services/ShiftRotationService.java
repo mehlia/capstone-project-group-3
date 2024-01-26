@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -118,4 +120,40 @@ public class ShiftRotationService {
         }
         return shiftRotationRepository.findAllByHasBeenRequestedTrue();
     }
+
+//    Delete employee shifts
+public void deleteSpecificShifts (long requesterId,long userId, long shiftId){
+    User requester = userRepository.findById(requesterId)
+            .orElseThrow(()-> new ErrorResponseException(HttpStatus.FORBIDDEN));
+
+    if (requester.getUserRole() != UserRole.HR_EMPLOYEE) {
+        throw new CustomException("Only HR employees can delete shifts.");
+    }
+
+    User userToDeleteShift = userRepository.findById(userId)
+            .orElseThrow(()-> new ErrorResponseException(HttpStatus.NOT_FOUND));
+
+    List<ShiftRotation> shiftRotations = userToDeleteShift.getShiftRotations();
+    ShiftRotation shiftRotationToRemove= null;
+
+     for(ShiftRotation shiftRotation: shiftRotations){
+          if(shiftRotation.getId().equals(shiftId)){
+              shiftRotationToRemove = shiftRotation;
+              break;
+           }
+     }
+     if (shiftRotationToRemove != null){
+         shiftRotationRepository.deleteById(shiftRotationToRemove.getId());
+         shiftRotations.remove(shiftRotationToRemove);
+         userToDeleteShift.setShiftRotations(shiftRotations);
+         userRepository.save(userToDeleteShift);
+     }
+    }
 }
+
+
+//Pseudo code
+//I want to delete employee shift.
+//first i would need to check whether the person requesting to delete the individuals shift is an HR
+// I need to get the list of shift rotatiion fo the user
+//I will then need to insert the id of the user to delete and the specific shift ID
