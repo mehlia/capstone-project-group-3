@@ -169,6 +169,11 @@ An Employee management system application, where the main function is to track a
 
 ## Demo
 
+
+https://github.com/JMen121/capstone-project-group-3/assets/128262915/04e2cd93-fa73-4fc0-8222-81cb9d506abc
+
+
+
 ## Front-End Planning
 
 ### Wireframe:
