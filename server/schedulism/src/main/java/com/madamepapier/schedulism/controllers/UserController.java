@@ -91,4 +91,17 @@ public class UserController {
         }
     }
 
+    //Delete users shift, HR only
+    @DeleteMapping("{requesterId}/deleteSpecificShift/{userId}/{shiftId}")
+    public ResponseEntity<Void>deleteSpecificShift(@PathVariable long requesterId,
+                                                   @PathVariable Long userId,
+                                                   @PathVariable Long shiftId){
+        try{
+            userService.deleteSpecificShifts(requesterId,userId,shiftId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (ErrorResponseException e){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
 }
